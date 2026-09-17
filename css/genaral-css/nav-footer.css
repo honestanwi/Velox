@@ -1,0 +1,218 @@
+@font-face {
+  font-family: Space-Grotesk;
+  src: url(/assets/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: Inter;
+  src: url(/assets/fonts/inter/inter-variable.ttf);
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg: #080a0a;
+  --section-bg: #101313;
+  --card-bg: #151918;
+  --lime: #c7ff2e;
+  --lime-dark: #8faf20;
+  --text: #f5f7f2;
+  --text-muted: #969c96;
+  --border: #252a27;
+  --head-font: Space-Grotesk;
+  --body-font: Inter;
+}
+.navbar {
+  width: 100%;
+  padding: 20px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  /* border-bottom: 1px solid var(--border); */
+  /* position: fixed; */
+  background: var(--section-bg);
+}
+
+.nav-logo {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-family: var(--head-font);
+}
+.nav-logo span:nth-child(1) {
+  color: var(--text);
+}
+
+.nav-logo span:nth-child(2) {
+  color: var(--lime);
+}
+
+.nav-logo span:nth-child(3) {
+  color: var(--text);
+}
+
+.nav-logo span:nth-child(4) {
+  color: var(--lime);
+}
+
+.nav-logo span:nth-child(5) {
+  color: var(--text);
+}
+
+.menu-toggle {
+  position: relative;
+  z-index: 101;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 20px;
+  height: 2px;
+  background: linear-gradient(135deg, var(--section-bg), var(--lime));
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 83px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 83px);
+  padding: 40px 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-20px);
+  opacity: 0;
+  z-index: 99;
+}
+
+.nav-menu.active {
+  visibility: visible;
+  pointer-events: auto;
+}
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.nav-links a img {
+  filter: brightness(0) saturate(100%) invert(86%) sepia(54%) saturate(983%)
+    hue-rotate(24deg) brightness(107%) contrast(101%);
+}
+
+.nav-links a:hover {
+  color: var(--lime);
+}
+
+.nav-button {
+  padding: 12px 20px;
+  background: var(--lime);
+  color: var(--bg);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.nav-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 0 15px rgba(199, 255, 46, 0.25);
+}
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .nav-menu {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    background: transparent;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    opacity: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  .nav-links a img {
+    filter: brightness(0) saturate(100%) invert(86%) sepia(54%) saturate(983%)
+      hue-rotate(24deg) brightness(107%) contrast(101%);
+  }
+
+  .nav-links a:hover {
+    color: var(--lime);
+  }
+
+  .nav-button {
+    padding: 12px 20px;
+    background: var(--lime);
+    color: var(--bg);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .nav-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 0 15px rgba(199, 255, 46, 0.25);
+  }
+}
