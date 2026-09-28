@@ -24,30 +24,35 @@ function startHeroAnimation() {
     onComplete: () => {
       startHeroIdleAnimation();
       setupMagneticButtons();
-      animateBookingPanel();
+      // animateBookingPanel();
     },
   });
 
   heroTimeline
     .from(".hero-background img", {
-      scale: 1.15,
-      x: 150,
+      scale: 1.18,
+      x: 100,
       opacity: 0,
-      duration: 1.4,
+      duration: 1.6,
+      ease: "power3.out",
     })
 
-    .from(".hero-eyebrow", {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-    })
+    .from(
+      ".hero-eyebrow",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+      },
+      "-=1",
+    )
 
     .from(
       ".hero-title",
       {
-        y: 80,
+        y: 100,
         opacity: 0,
-        duration: 0.8,
+        duration: 1,
       },
       "-=0.3",
     )
@@ -55,11 +60,11 @@ function startHeroAnimation() {
     .from(
       ".hero-description",
       {
-        y: 30,
+        y: 35,
         opacity: 0,
-        duration: 0.6,
+        duration: 0.7,
       },
-      "-=0.4",
+      "-=0.5",
     )
 
     .from(
@@ -67,39 +72,40 @@ function startHeroAnimation() {
       {
         y: 30,
         opacity: 0,
-        duration: 0.6,
+        duration: 0.7,
       },
-      "-=0.3",
+      "-=0.4",
     )
     .from(
       ".booking-panel",
       {
-        y: 60,
+        y: 70,
         opacity: 0,
-        duration: 0.8,
+        scale: 0.97,
+        duration: 0.9,
+        ease: "power3.out",
       },
-      "-=0.4",
+      "-=0.35",
     );
 }
 
 function startHeroIdleAnimation() {
   gsap.to(".hero-background img", {
-    y: -10,
-    duration: 3,
+    y: -12,
+    scale: 1.02,
+    duration: 4,
     repeat: -1,
     yoyo: true,
-    ease: "power1.inOut",
+    ease: "sine.inOut",
   });
 
   gsap.to(".hero-glow", {
-    xPercent: -50,
-    yPercent: -50,
-    scale: 1.3,
+    scale: 1.25,
     opacity: 0.3,
-    duration: 3,
+    duration: 4,
     repeat: -1,
     yoyo: true,
-    ease: "power1.inOut",
+    ease: "sine.inOut",
   });
 }
 function setupMagneticButtons() {
@@ -174,7 +180,9 @@ setupHowItWorksAnimation();
 const featuredCars = [
   {
     name: "BMW M4",
-    type: "Sports",
+    brand: "BMW",
+    category: "Sports",
+    type: "Sedan",
     image: "../assets/images/porsche/Porsche_911_GT3_RS_Neon.png",
     seats: 4,
     transmission: "Auto",
@@ -184,7 +192,9 @@ const featuredCars = [
 
   {
     name: "Mercedes AMG",
-    type: "Luxury",
+    brand: "Mercedes",
+    category: "Luxury",
+    type: "Sport",
     image: "../assets/images/porsche/Porsche_911_GT3_RS_Neon.png",
     seats: 5,
     transmission: "Auto",
@@ -194,6 +204,8 @@ const featuredCars = [
 
   {
     name: "Porsche 911",
+    brand: "porsche",
+    category: "Sports",
     type: "Sports",
     image: "../assets/images/porsche/Porsche_911_GT3_RS_Neon.png",
     seats: 2,
@@ -227,70 +239,404 @@ function renderFeaturedCars() {
 
             </div>
 
-            <div class="car-info">
-
-                <p class="car-type">
-                    ${car.type}
-                </p>
-
+           <div class="car-info">
                 <h3 class="car-name">
                     ${car.name}
                 </h3>
 
-                <div class="car-specs">
-                    <span>${car.seats} Seats</span>
-                    <span>${car.transmission}</span>
-                    <span>${car.fuel}</span>
-                </div>
-
-                <div class="car-bottom">
-
+              <div class="car-bottom">
+<p class="car-category">
+            ${car.category}
+        </p>
                     <p class="car-price">
-                        ${car.price.toLocaleString()} XAF
-                        <span>/ day</span>
-                    </p>
+ ${car.price.toLocaleString()} XAF
+ <span>/ day</span>
+ </p>
+              </div>
+            </div>
 
-                    <a
-                        href="#"
-                        class="car-details"
-                    >
-                        Details
-                    </a>
+             <div class="car-hover">
 
-                </div>
+        <div class="car-hover-content">
+
+            <p class="car-category">
+                ${car.category}
+            </p>
+
+            <h3 class="car-hover-brand">
+                ${car.brand}
+            </h3>
+
+            <div class="car-specs">
+                <span>${car.type}</span>
+                <span>${car.seats} Seats</span>
+
+                <span>${car.transmission}</span>
+
+                <span>${car.fuel}</span>
+                
 
             </div>
+
+            <p class="car-hover-price">
+                ${car.price.toLocaleString()} XAF
+                <span>/ day</span>
+            </p>
+
+            <a
+                href="#"
+                class="car-details magnetic-button"
+            >
+                View Details
+            </a>
+
+        </div>
+
+    </div>
         `;
 
     carsContainer.appendChild(carCard);
   });
 }
 renderFeaturedCars();
+setupCarCardAnimations();
 
-// function setupFeaturedCarsAnimation() {
-//   gsap.from(".featured-heading", {
-//     y: 60,
-//     opacity: 0,
-//     duration: 0.8,
+function setupFeaturedCarsAnimation() {
+  gsap.from(".car-card", {
+    y: 80,
+    opacity: 0,
+    scale: 0.95,
+    duration: 0.9,
+    stagger: 0.15,
+    ease: "power3.out",
 
-//     scrollTrigger: {
-//       trigger: ".featured-cars",
-//       start: "top 80%",
-//     },
-//   });
+    scrollTrigger: {
+      trigger: ".cars-container",
+      start: "top 80%",
+    },
+  });
+}
+setupFeaturedCarsAnimation();
 
-//   gsap.from(".car-card", {
-//     y: 80,
-//     opacity: 0,
-//     scale: 0.95,
-//     duration: 0.7,
-//     stagger: 0.15,
-//     ease: "power3.out",
+function setupCarCardAnimations() {
+  const cards = document.querySelectorAll(".car-card");
 
-//     scrollTrigger: {
-//       trigger: ".cars-container",
-//       start: "top 80%",
-//     },
-//   });
-// }
-// setupFeaturedCarsAnimation();
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (event) => {
+      const rect = card.getBoundingClientRect();
+
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = (y - centerY) / 9;
+
+      const rotateY = (centerX - x) / 9;
+
+      gsap.to(card, {
+        rotateX: rotateX,
+        rotateY: rotateY,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    });
+    const image = card.querySelector(".car-image img");
+    const hoverContent = card.querySelector(".car-hover-content");
+
+    card.addEventListener("mouseenter", () => {
+      gsap.to(image, {
+        scale: 1.08,
+        duration: 0.7,
+        ease: "power3.out",
+      });
+
+      gsap.fromTo(
+        hoverContent,
+        {
+          y: 25,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power3.out",
+        },
+      );
+    });
+
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+
+      gsap.to(image, {
+        scale: 1,
+        duration: 0.7,
+        ease: "power3.out",
+      });
+    });
+  });
+}
+function setupAboutAnimation() {
+  // Step 2: Animate stat cards staggered
+  // "stagger: 0.15" means each card animates 0.15s after the previous one
+  gsap.from(".stat-card", {
+    y: 50,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.15, // KEY: Stagger creates sequence
+    scrollTrigger: {
+      trigger: ".about-grid",
+      start: "top 75%",
+      onEnter: () => {
+        // When cards enter viewport, start the counter
+        startStatCounters();
+      },
+    },
+  });
+
+  // Step 3: Animate the about image with glow reveal
+  gsap.from(".about-image", {
+    x: 60,
+    opacity: 0,
+    duration: 0.8,
+    scrollTrigger: {
+      trigger: ".about-image",
+      start: "top 70%",
+    },
+  });
+
+  // Step 4: Add the "active" state to stat cards for light effects
+  const statCards = document.querySelectorAll(".stat-card");
+  statCards.forEach((card, index) => {
+    ScrollTrigger.create({
+      trigger: card,
+      start: "top 80%",
+      onEnter: () => card.classList.add("active"),
+      onLeaveBack: () => card.classList.remove("active"),
+    });
+  });
+}
+
+// Teaching moment: Animated number counter
+// We're animating numbers counting up using GSAP's to() method
+// The key: use onUpdate callback to read the current value every frame
+function startStatCounters() {
+  const statNumbers = document.querySelectorAll(".stat-number");
+
+  statNumbers.forEach((element) => {
+    const target = parseInt(element.dataset.target);
+    // Check if this is the "Satisfaction %" card
+    const isSatisfactionCard =
+      element.nextElementSibling.textContent.includes("Satisfaction");
+
+    // Use GSAP to animate an object's value property from 0 to target
+    gsap.to(
+      { value: 0 },
+      {
+        value: target,
+        duration: 2, // 2 second animation
+        ease: "power2.out", // Easing: fast start, slow end
+        onUpdate: function () {
+          // onUpdate fires every frame during animation
+          const currentValue = Math.floor(this.targets()[0].value);
+          const suffix = isSatisfactionCard ? "%" : "";
+          element.textContent = currentValue.toLocaleString() + suffix;
+        },
+      },
+    );
+  });
+
+  // Activate the image glow after a tiny delay
+  gsap.delayedCall(0.3, () => {
+    document.querySelector(".about-image").classList.add("active");
+  });
+}
+
+// Animate Why Choose Us benefit cards
+function setupBenefitsAnimation() {
+  gsap.from(".benefit-card", {
+    y: 60,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.12, // Slightly tighter stagger than stat cards
+    scrollTrigger: {
+      trigger: ".benefits-grid",
+      start: "top 75%",
+    },
+  });
+}
+
+// Call the animations
+setupAboutAnimation();
+setupBenefitsAnimation();
+function setupTestimonials() {
+  const container = document.querySelector(".testimonial-container");
+  if (!container) return;
+
+  const testimonialCards = [...container.querySelectorAll(".testimonial-card")];
+  if (!testimonialCards.length) return;
+
+  function selectTestimonial(selectedCard) {
+    testimonialCards.forEach((card) => {
+      const isSelected = card === selectedCard;
+      card.classList.toggle("expanded", isSelected);
+      card.setAttribute("aria-expanded", String(isSelected));
+    });
+  }
+
+  selectTestimonial(testimonialCards[0]);
+
+  testimonialCards.forEach((card, index) => {
+    card.addEventListener("click", () => selectTestimonial(card));
+
+    card.addEventListener("keydown", (event) => {
+      const direction =
+        event.key === "ArrowDown" || event.key === "ArrowRight"
+          ? 1
+          : event.key === "ArrowUp" || event.key === "ArrowLeft"
+            ? -1
+            : 0;
+
+      if (!direction) return;
+
+      event.preventDefault();
+      const nextIndex =
+        (index + direction + testimonialCards.length) % testimonialCards.length;
+      testimonialCards[nextIndex].focus();
+      selectTestimonial(testimonialCards[nextIndex]);
+    });
+  });
+}
+setupTestimonials();
+function setupFinalCTAAnimation() {
+  const timeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".final-cta",
+      start: "top 75%",
+    },
+  });
+
+  timeline
+    .from(".final-cta .section-eyebrow", {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power3.out",
+    })
+
+    .from(
+      ".cta-title",
+      {
+        y: 80,
+        opacity: 0,
+        duration: 0.9,
+        ease: "power3.out",
+      },
+      "-=0.3",
+    )
+
+    .from(
+      ".cta-description",
+      {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power3.out",
+      },
+      "-=0.5",
+    )
+
+    .from(
+      ".cta-button",
+      {
+        y: 25,
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.6,
+        ease: "back.out(1.7)",
+      },
+      "-=0.3",
+    )
+
+    .from(
+      ".cta-light",
+      {
+        xPercent: -30,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power3.out",
+      },
+      "-=0.8",
+    );
+  gsap.to(".cta-glow", {
+    scale: 1.3,
+    opacity: 0.12,
+    duration: 3,
+    repeat: -1,
+    yoyo: true,
+    ease: "power1.inOut",
+  });
+}
+setupFinalCTAAnimation();
+function setupFooterAnimation() {
+  gsap.from(".footer-brand", {
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    scrollTrigger: {
+      trigger: ".footer",
+      start: "top 85%",
+    },
+  });
+
+  gsap.from(".footer-column", {
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.12,
+    scrollTrigger: {
+      trigger: ".footer-links",
+      start: "top 85%",
+    },
+  });
+}
+setupFooterAnimation();
+function setupFooterWordmarkAnimation() {
+  const wordmark = document.querySelector(".footer-wordmark");
+  const text = document.querySelector(".footer-wordmark__text");
+  const light = document.querySelector(".footer-wordmark__light");
+
+  if (!wordmark || !text || !light) return;
+
+  const timeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: wordmark,
+      start: "top 85%",
+      end: "bottom 40%",
+      scrub: 1,
+    },
+  });
+
+  timeline
+    .to(text, {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power3.out",
+    })
+    .to(light, {
+      xPercent: 400,
+      opacity: 0.5,
+      duration: 1,
+      ease: "power2.inOut",
+    });
+}
+
+setupFooterWordmarkAnimation();

@@ -1,0 +1,497 @@
+/* =====================================================
+   VELOX AUTH PAGE
+   ===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #080a0a;
+  color: #f5f7f2;
+}
+
+/* =====================================================
+   AUTH PAGE
+   ===================================================== */
+
+.auth-page {
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 90px 20px 70px;
+}
+
+/* =====================================================
+   BACKGROUND
+   ===================================================== */
+
+.auth-background {
+  position: absolute;
+  inset: 0;
+
+  background-image: url("../assets/images/auth/auth-bg.jpg");
+  background-size: cover;
+  background-position: center;
+
+  transform: scale(1.05);
+
+  z-index: -3;
+}
+
+/* Dark layer over the image */
+
+.auth-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    180deg,
+    rgba(8, 10, 10, 0.55) 0%,
+    rgba(8, 10, 10, 0.72) 50%,
+    rgba(8, 10, 10, 0.94) 100%
+  );
+
+  z-index: -2;
+}
+
+/* Subtle lime atmospheric glow */
+
+.auth-overlay::after {
+  content: "";
+
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  right: -120px;
+  bottom: 5%;
+
+  background: rgba(199, 255, 46, 0.08);
+
+  filter: blur(100px);
+  border-radius: 50%;
+}
+
+/* =====================================================
+   LOGO
+   ===================================================== */
+
+.auth-logo {
+  position: absolute;
+
+  top: 28px;
+  left: 24px;
+
+  color: #f5f7f2;
+  text-decoration: none;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+
+  letter-spacing: 0.22em;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.auth-logo:hover {
+  color: #c7ff2e;
+  transform: translateX(3px);
+}
+
+/* =====================================================
+   AUTH CARD
+   ===================================================== */
+
+.auth-card {
+  position: relative;
+
+  width: 100%;
+  max-width: 440px;
+
+  padding: 1px;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Actual dark glass surface */
+
+.auth-content {
+  position: relative;
+
+  width: 100%;
+
+  padding: 34px 25px;
+
+  border-radius: 23px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(21, 25, 24, 0.88),
+    rgba(8, 10, 10, 0.78)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  overflow: hidden;
+}
+
+/* subtle shine inside card */
+
+.auth-content::before {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  top: -120px;
+  right: -70px;
+
+  border-radius: 50%;
+
+  background: rgba(199, 255, 46, 0.06);
+
+  filter: blur(35px);
+
+  pointer-events: none;
+}
+
+/* =====================================================
+   AUTH FORMS
+   ===================================================== */
+
+.auth-form {
+  width: 100%;
+}
+
+.signup-form {
+  display: none;
+}
+
+/* =====================================================
+   TEXT
+   ===================================================== */
+
+.eyebrow {
+  margin-bottom: 14px;
+
+  color: #c7ff2e;
+
+  font-size: 0.65rem;
+  font-weight: 600;
+
+  letter-spacing: 0.2em;
+}
+
+.auth-form h1 {
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: clamp(2.5rem, 11vw, 4rem);
+  line-height: 0.92;
+
+  letter-spacing: -0.055em;
+
+  font-weight: 600;
+}
+
+.auth-form h1 span {
+  color: #c7ff2e;
+}
+
+.auth-description {
+  max-width: 320px;
+
+  margin-top: 18px;
+  margin-bottom: 30px;
+
+  color: #969c96;
+
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* =====================================================
+   INPUTS
+   ===================================================== */
+
+.input-group {
+  margin-bottom: 19px;
+}
+
+.input-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #969c96;
+
+  font-size: 0.7rem;
+  font-weight: 500;
+
+  letter-spacing: 0.04em;
+}
+
+.input-group input {
+  width: 100%;
+
+  height: 52px;
+
+  padding: 0 15px;
+
+  border: 1px solid #252a27;
+  border-radius: 10px;
+
+  outline: none;
+
+  background: rgba(16, 19, 19, 0.75);
+
+  color: #f5f7f2;
+
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.input-group input::placeholder {
+  color: #5f6560;
+}
+
+.input-group input:focus {
+  border-color: rgba(199, 255, 46, 0.65);
+
+  background: rgba(16, 19, 19, 0.95);
+
+  box-shadow: 0 0 0 3px rgba(199, 255, 46, 0.07);
+}
+
+/* =====================================================
+   FORM OPTIONS
+   ===================================================== */
+
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 3px 0 24px;
+
+  font-size: 0.68rem;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #969c96;
+
+  cursor: pointer;
+}
+
+.remember input {
+  accent-color: #c7ff2e;
+}
+
+.forgot-password {
+  color: #969c96;
+  text-decoration: none;
+
+  transition: color 0.25s ease;
+}
+
+.forgot-password:hover {
+  color: #c7ff2e;
+}
+
+/* =====================================================
+   AUTH BUTTON
+   ===================================================== */
+
+.auth-button {
+  width: 100%;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 17px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #c7ff2e;
+  color: #080a0a;
+
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.auth-button:hover {
+  background: #d3ff55;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 12px 30px rgba(199, 255, 46, 0.18);
+}
+
+.auth-button:active {
+  transform: translateY(0);
+}
+
+.button-arrow {
+  font-size: 1.15rem;
+
+  transition: transform 0.3s ease;
+}
+
+.auth-button:hover .button-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* =====================================================
+   SWITCH LOGIN / SIGNUP
+   ===================================================== */
+
+.switch-auth {
+  margin-top: 25px;
+
+  text-align: center;
+
+  color: #969c96;
+
+  font-size: 0.72rem;
+}
+
+.switch-auth button {
+  margin-left: 4px;
+
+  border: none;
+  background: none;
+
+  color: #f5f7f2;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: color 0.25s ease;
+}
+
+.switch-auth button:hover {
+  color: #c7ff2e;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.auth-footer {
+  position: absolute;
+
+  bottom: 25px;
+  left: 0;
+
+  width: 100%;
+
+  text-align: center;
+
+  color: rgba(150, 156, 150, 0.55);
+
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+}
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (min-width: 600px) {
+  .auth-page {
+    padding: 100px 30px 80px;
+  }
+
+  .auth-content {
+    padding: 42px 40px;
+  }
+
+  .auth-logo {
+    top: 35px;
+    left: 40px;
+  }
+}
+
+/* =====================================================
+   DESKTOP
+   ===================================================== */
+
+@media (min-width: 900px) {
+  .auth-page {
+    padding: 80px;
+  }
+
+  .auth-card {
+    max-width: 470px;
+  }
+
+  .auth-content {
+    padding: 48px 45px;
+  }
+
+  .auth-form h1 {
+    font-size: 4rem;
+  }
+
+  .auth-logo {
+    top: 40px;
+    left: 50px;
+  }
+
+  .auth-footer {
+    bottom: 30px;
+  }
+}

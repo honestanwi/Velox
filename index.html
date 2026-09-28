@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script defer src="js/index.js"></script>
     <script defer src="js/general-js/nav-footer.js"></script>
+    <script defer src="js/general-js/theme.js"></script>
   </head>
 
   <body>
@@ -29,6 +30,26 @@
         </div>
       </div>
     </div> -->
+
+    <section class="toggle-container" aria-label="Color theme">
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch to light mode"
+        aria-pressed="true"
+      >
+        <span class="theme-label theme-label--dark">Dark</span>
+        <span class="theme-label theme-label--light">Light</span>
+        <span class="theme-toggle__thumb" aria-hidden="true">
+          <img
+            src="assets/icons/moon-svgrepo-com.svg"
+            alt=""
+            class="toggle-icon"
+          />
+        </span>
+      </button>
+    </section>
 
     <main class="home">
       <nav class="navbar">
@@ -48,7 +69,7 @@
         <div class="nav-menu">
           <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="pages/cars.html">Cars</a>
+            <a href="pages/cars.html">Our Fleet</a>
             <a href="pages/booking.html">Checkout</a>
 
             <a href="pages/login.html">Login</a>
@@ -57,7 +78,7 @@
               ><img src="assets/icons/profile.svg" alt="profile icon"
             /></a>
           </div>
-          <a href="#" class="nav-button"> Book a car </a>
+          <a href="#" class="nav-button">Explore Fleet</a>
         </div>
       </nav>
 
@@ -300,6 +321,339 @@
 
         <div class="cars-container"></div>
       </section>
+
+      <section class="about">
+        <div class="about-container">
+          <div class="about-content">
+            <div class="section-heading">
+              <p class="section-eyebrow">ABOUT VELOX</p>
+
+              <h2 class="section-title">
+                Premium rentals,
+                <span>reimagined.</span>
+              </h2>
+
+              <p class="section-description">
+                Since 2020, VELOX has been redefining luxury car rentals. We
+                believe every journey deserves a vehicle that matches your
+                ambition.
+              </p>
+            </div>
+
+            <div class="about-grid">
+              <div class="stat-card">
+                <div class="stat-number" data-target="15000">0+</div>
+                <p class="stat-label">Happy Customers</p>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-number" data-target="450">0</div>
+                <p class="stat-label">Premium Vehicles</p>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-number" data-target="50">0+</div>
+                <p class="stat-label">Locations</p>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-number" data-target="99">0</div>
+                <p class="stat-label">Satisfaction %</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-image">
+            <img
+              src="assets/images/hero/mockups .jpg"
+              alt="VELOX premium vehicle"
+              class="about-img"
+            />
+            <div class="about-image-glow"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="why-choose-us">
+        <div class="section-heading">
+          <p class="section-eyebrow">WHY VELOX</p>
+
+          <h2 class="section-title">
+            Built for
+            <span>excellence.</span>
+          </h2>
+        </div>
+
+        <div class="benefits-grid">
+          <article class="benefit-card">
+            <div class="benefit-icon">
+              <span class="icon-number">01</span>
+            </div>
+            <h3>Curated Fleet</h3>
+            <p>
+              Every vehicle is hand-selected and meticulously maintained to
+              ensure premium quality and performance.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">
+              <span class="icon-number">02</span>
+            </div>
+            <h3>Simple Booking</h3>
+            <p>
+              Transparent pricing, no hidden fees. Book online in minutes and
+              drive with confidence.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">
+              <span class="icon-number">03</span>
+            </div>
+            <h3>24/7 Support</h3>
+            <p>
+              Our dedicated team is always available to help, wherever your
+              journey takes you.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">
+              <span class="icon-number">04</span>
+            </div>
+            <h3>Flexible Returns</h3>
+            <p>
+              Extended hours and multiple locations make returns convenient for
+              your schedule.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">
+              <span class="icon-number">05</span>
+            </div>
+            <h3>Insurance Options</h3>
+            <p>
+              Comprehensive coverage options tailored to your needs and peace of
+              mind.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">
+              <span class="icon-number">06</span>
+            </div>
+            <h3>Loyalty Rewards</h3>
+            <p>
+              Earn points on every rental and unlock exclusive perks and
+              upgrades.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="testimonials" aria-labelledby="testimonials-title">
+        <div class="testimonials-heading">
+          <p class="section-eyebrow">CLIENT STORIES</p>
+          <h2 class="testimonials-title" id="testimonials-title">
+            Loved for every
+            <span>mile.</span>
+          </h2>
+          <p class="testimonials-intro">
+            Select a story to hear why drivers choose VELOX.
+          </p>
+        </div>
+
+        <div class="testimonial-container">
+          <button class="testimonial-card" type="button" aria-expanded="false">
+            <span class="testimonial-card__number">01</span>
+            <span class="testimonial-card__tab-label">Sarah Mitchell</span>
+            <span class="testimonial-quote">
+              “VELOX made my business trip feel effortless. The car arrived
+              immaculate and the entire booking process took minutes.”
+            </span>
+            <span class="testimonial-author">
+              <span class="testimonial-author__initials">SM</span>
+              <span>
+                <strong>Sarah Mitchell</strong>
+                <small>Business traveller</small>
+              </span>
+            </span>
+          </button>
+
+          <button class="testimonial-card" type="button" aria-expanded="false">
+            <span class="testimonial-card__number">02</span>
+            <span class="testimonial-card__tab-label">David Okoro</span>
+            <span class="testimonial-quote">
+              “Everything was exactly as promised—from the vehicle to the
+              handover. It is the first rental service I genuinely look forward
+              to using again.”
+            </span>
+            <span class="testimonial-author">
+              <span class="testimonial-author__initials">DO</span>
+              <span>
+                <strong>David Okoro</strong>
+                <small>Weekend explorer</small>
+              </span>
+            </span>
+          </button>
+
+          <button class="testimonial-card" type="button" aria-expanded="false">
+            <span class="testimonial-card__number">03</span>
+            <span class="testimonial-card__tab-label">Maya Chen</span>
+            <span class="testimonial-quote">
+              “A beautiful car, transparent pricing, and people who were ready
+              when I was. VELOX turned a special weekend into an even better
+              memory.”
+            </span>
+            <span class="testimonial-author">
+              <span class="testimonial-author__initials">MC</span>
+              <span>
+                <strong>Maya Chen</strong>
+                <small>City break driver</small>
+              </span>
+            </span>
+          </button>
+
+          <button class="testimonial-card" type="button" aria-expanded="false">
+            <span class="testimonial-card__number">04</span>
+            <span class="testimonial-card__tab-label">Amara Njoya</span>
+            <span class="testimonial-quote">
+              “The team handled every detail with real care. I had a premium car
+              for the week and zero friction from collection to return.”
+            </span>
+            <span class="testimonial-author">
+              <span class="testimonial-author__initials">AN</span>
+              <span>
+                <strong>Amara Njoya</strong>
+                <small>Frequent renter</small>
+              </span>
+            </span>
+          </button>
+
+          <button class="testimonial-card" type="button" aria-expanded="false">
+            <span class="testimonial-card__number">05</span>
+            <span class="testimonial-card__tab-label">Leo Martins</span>
+            <span class="testimonial-quote">
+              “I needed something impressive for a client visit, and VELOX
+              delivered. It felt personal, polished, and completely reliable.”
+            </span>
+            <span class="testimonial-author">
+              <span class="testimonial-author__initials">LM</span>
+              <span>
+                <strong>Leo Martins</strong>
+                <small>Creative director</small>
+              </span>
+            </span>
+          </button>
+        </div>
+      </section>
+      <section class="final-cta">
+        <div class="cta-glow"></div>
+
+        <div class="cta-light"></div>
+
+        <div class="cta-content">
+          <p class="section-eyebrow">YOUR NEXT JOURNEY</p>
+
+          <h2 class="cta-title">
+            Ready to
+            <span>drive different?</span>
+          </h2>
+
+          <p class="cta-description">
+            Find a car that matches your journey and make your next drive one
+            worth remembering.
+          </p>
+
+          <a href="pages/cars.html" class="cta-button magnetic-button">
+            Explore the fleet
+            <span>→</span>
+          </a>
+        </div>
+      </section>
+      <footer class="footer">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">
+              <span>V</span>
+              <span>E</span>
+              <span>L</span>
+              <span>O</span>
+              <span>X</span>
+            </a>
+
+            <p>
+              Premium cars. Exceptional journeys. Drive different with VELOX.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-column">
+              <h3>Explore</h3>
+
+              <a href="index.html">Home</a>
+              <a href="pages/cars.html">Cars</a>
+              <a href="pages/booking.html">Checkout</a>
+            </div>
+
+            <div class="footer-column">
+              <h3>Account</h3>
+
+              <a href="pages/login.html">Login</a>
+              <a href="pages/signup.html">Sign Up</a>
+              <a href="pages/profile.html">Profile</a>
+            </div>
+
+            <div class="footer-column">
+              <h3>Follow</h3>
+
+              <a href="#">Instagram</a>
+              <a href="#">Facebook</a>
+              <a href="#">X</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 VELOX. All rights reserved.</p>
+
+          <div class="footer-bottom-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+        <div class="footer-wordmark" aria-hidden="true">
+          <span class="footer-wordmark__text logo"
+            ><span>V</span>
+            <span>E</span>
+            <span>L</span>
+            <span>O</span>
+            <span>X</span></span
+          >
+
+          <span class="footer-wordmark__light"></span>
+        </div>
+      </footer>
+      <!-- Floating Magnetic Back to Top Button -->
+      <button
+        class="back-to-top magnetic-button"
+        id="back-to-top"
+        aria-label="Back to top"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M18 15l-6-6-6 6"></path>
+        </svg>
+      </button>
     </main>
   </body>
 </html>

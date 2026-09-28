@@ -1,0 +1,857 @@
+[
+  {
+    "id": 1,
+    "name": "Porsche 911 GT3 RS",
+    "brand": "Porsche",
+    "model": "911 GT3 RS",
+    "year": 2024,
+    "category": "Sports",
+    "type": "Coupe",
+    "seats": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 518,
+    "price": 185000,
+    "image": "../assets/images/porsche/porsche 911.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-25", "end": "2026-09-28" },
+      { "start": "2026-10-10", "end": "2026-10-15" }
+    ],
+    "colors": [
+    {
+      "name": "White",
+      "hex": "#FFFFFF",
+      "images": {
+        "exterior": [
+          "../assets/images/porsche/white exterior1.jpg",
+          "../assets/images/porsche/white exterior2.jpg",
+          "../assets/images/porsche/white exterior3.jpg",
+          "../assets/images/porsche/white exterior4.jpg",
+          "../assets/images/porsche/white exterior5.jpg",
+          "../assets/images/porsche/white exterior6.jpg"   
+        ],
+        "interior": [
+          "../assets/images/porsche/white interior1.jpg",
+          "../assets/images/porsche/white interior2.jpg",
+          "../assets/images/porsche/white interior3.jpg",
+          "../assets/images/porsche/white interior4.jpg"
+        ]
+      }
+    },
+    {
+      "name": "Guards Red",
+      "hex": "#C41E3A",
+      "images": {
+        "exterior": [
+          "../assets/images/porsche/porsche 911.jpg",
+          "../assets/images/porsche/porsche 911.jpg"
+        ],
+        "interior": [
+          "../assets/images/porsche/porsche 911.jpg"
+        ]
+      }
+    },
+    {
+      "name": "Shark Blue",
+      "hex": "#1E3A5F",
+      "images": {
+        "exterior": [
+          "../assets/images/porsche/porsche 911.jpg"
+        ],
+        "interior": [
+          "../assets/images/porsche/porsche 911.jpg"
+        ]
+      }
+    }
+  ],
+  "defaultColor": "White"
+  },
+  {
+    "id": 2,
+    "name": "Ferrari 296 GTB",
+    "brand": "Ferrari",
+    "model": "296 GTB",
+    "year": 2024,
+    "category": "Sports",
+    "type": "Coupe",
+    "seats": 2,
+    "transmission": "Automatic",
+    "fuel": "Hybrid",
+    "horsepower": 819,
+    "price": 245000,
+    "image": "../assets/images/ferrari/ferrari 296.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-22", "end": "2026-09-30" },
+      { "start": "2026-10-25", "end": "2026-10-30" }
+    ],
+    "colors": [
+    {
+      "name": "Red",
+      "hex": "#C41E3A",
+      "images": {
+        "exterior": [
+          "../assets/images/ferrari/red exterior1.jpg",
+          "../assets/images/ferrari/red exterior2.jpg",
+          "../assets/images/ferrari/red exterior3.jpg",
+          "../assets/images/ferrari/red exterior4.jpg"
+           
+        ],
+        "interior": [
+          "../assets/images/ferrari/red interior1.jpg",
+          "../assets/images/ferrari/red interior2.jpg",
+          "../assets/images/ferrari/red interior3.jpg"
+        ]
+      }
+    },
+    {
+      "name": "Black",
+      "hex": "#000000",
+      "images": {
+        "exterior": [
+          "../assets/images/ferrari/black exterior1.jpg",
+          "../assets/images/ferrari/black exterior2.jpg",
+          "../assets/images/ferrari/black exterior3.jpg",
+          "../assets/images/ferrari/black exterior4.jpg"
+        ],
+        "interior": [
+          "../assets/images/ferrari/black interior1.jpg",
+          "../assets/images/ferrari/black interior2.jpg",
+          "../assets/images/ferrari/black interior3.jpg"
+        ]
+      }
+    }
+    
+  ],
+  "defaultColor": "Red"
+  },
+  {
+    "id": 3,
+    "name": "Lamborghini Huracán Tecnica",
+    "brand": "Lamborghini",
+    "model": "Huracán Tecnica",
+    "year": 2023,
+    "category": "Sports",
+    "type": "Coupe",
+    "seats": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 640,
+    "price": 220000,
+    "image": "../assets/images/lambo/Lamborghini Huracán Tecnica.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 4,
+    "name": "McLaren 750S",
+    "brand": "McLaren",
+    "model": "750S",
+    "year": 2024,
+    "category": "Sports",
+    "type": "Coupe",
+    "seats": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 740,
+    "price": 265000,
+    "image": "../assets/images/mclaren/New McLaren 750S 2025_ Next-Level Performance and Design.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-10-01", "end": "2026-10-07" },
+      { "start": "2026-10-20", "end": "2026-10-25" }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Aston Martin Vantage",
+    "brand": "Aston Martin",
+    "model": "Vantage",
+    "year": 2024,
+    "category": "Sports",
+    "type": "Coupe",
+    "seats": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 656,
+    "price": 195000,
+    "image": "../assets/images/aston martin/aston-martin-vantage.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 6,
+    "name": "BMW M4 Competition",
+    "brand": "BMW",
+    "model": "M4 Competition",
+    "year": 2024,
+    "category": "Sports",
+    "type": "Coupe",
+    "seats": 4,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 503,
+    "price": 125000,
+    "image": "../assets/images/bmw/bmw-m4-competition.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-26", "end": "2026-10-02" }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Mercedes-AMG GT 63 S E Performance",
+    "brand": "Mercedes-Benz",
+    "model": "AMG GT 63 S E Performance",
+    "year": 2024,
+    "category": "Sports",
+    "type": "Coupe",
+    "seats": 4,
+    "transmission": "Automatic",
+    "fuel": "Hybrid",
+    "horsepower": 831,
+    "price": 175000,
+    "image": "../assets/images/mercedes/mercedes-amg-gt-63.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 8,
+    "name": "Audi RS e-tron GT",
+    "brand": "Audi",
+    "model": "RS e-tron GT",
+    "year": 2024,
+    "category": "Electric",
+    "type": "Sedan",
+    "seats": 4,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "horsepower": 637,
+    "price": 155000,
+    "image": "../assets/images/audi/audi-rs-etron-gt.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-23", "end": "2026-09-27" }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Porsche Taycan Turbo S",
+    "brand": "Porsche",
+    "model": "Taycan Turbo S",
+    "year": 2024,
+    "category": "Electric",
+    "type": "Sedan",
+    "seats": 4,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "horsepower": 751,
+    "price": 168000,
+    "image": "../assets/images/porsche/porsche-taycan-turbo-s.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 10,
+    "name": "Tesla Model S Plaid",
+    "brand": "Tesla",
+    "model": "Model S Plaid",
+    "year": 2024,
+    "category": "Electric",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "horsepower": 1020,
+    "price": 98000,
+    "image": "../assets/images/tesla/tesla-model-s-plaid.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-10-05", "end": "2026-10-12" }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Lucid Air Sapphire",
+    "brand": "Lucid",
+    "model": "Air Sapphire",
+    "year": 2024,
+    "category": "Electric",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "horsepower": 1234,
+    "price": 210000,
+    "image": "../assets/images/lucid/lucid-air-sapphire.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 12,
+    "name": "Rimac Nevera",
+    "brand": "Rimac",
+    "model": "Nevera",
+    "year": 2023,
+    "category": "Electric",
+    "type": "Coupe",
+    "seats": 2,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "horsepower": 1914,
+    "price": 450000,
+    "image": "../assets/images/rimac/rimac-nevera.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-28", "end": "2026-10-05" },
+      { "start": "2026-10-15", "end": "2026-10-20" }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Rolls-Royce Ghost",
+    "brand": "Rolls-Royce",
+    "model": "Ghost",
+    "year": 2024,
+    "category": "Luxury",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 563,
+    "price": 195000,
+    "image": "../assets/images/rolls-royce/rolls-royce-ghost.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 14,
+    "name": "Bentley Flying Spur",
+    "brand": "Bentley",
+    "model": "Flying Spur",
+    "year": 2024,
+    "category": "Luxury",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 626,
+    "price": 185000,
+    "image": "../assets/images/bentley/bentley-flying-spur.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-24", "end": "2026-09-29" }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Mercedes-Maybach S 680",
+    "brand": "Mercedes-Benz",
+    "model": "Maybach S 680",
+    "year": 2024,
+    "category": "Luxury",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 612,
+    "price": 175000,
+    "image": "../assets/images/mercedes/mercedes-maybach-s680.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 16,
+    "name": "BMW 7 Series M760e",
+    "brand": "BMW",
+    "model": "M760e",
+    "year": 2024,
+    "category": "Luxury",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Hybrid",
+    "horsepower": 571,
+    "price": 135000,
+    "image": "../assets/images/bmw/bmw-m760e.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-10-08", "end": "2026-10-14" }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Audi A8 L",
+    "brand": "Audi",
+    "model": "A8 L",
+    "year": 2024,
+    "category": "Luxury",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 453,
+    "price": 115000,
+    "image": "../assets/images/audi/audi-a8-l.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 18,
+    "name": "Range Rover Autobiography",
+    "brand": "Land Rover",
+    "model": "Range Rover Autobiography",
+    "year": 2024,
+    "category": "SUV",
+    "type": "SUV",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 523,
+    "price": 145000,
+    "image": "../assets/images/range-rover/range-rover-autobiography.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-25", "end": "2026-10-01" }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Lamborghini Urus Performante",
+    "brand": "Lamborghini",
+    "model": "Urus Performante",
+    "year": 2024,
+    "category": "SUV",
+    "type": "SUV",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 666,
+    "price": 225000,
+    "image": "../assets/images/lambo/lamborghini-urus-performante.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 20,
+    "name": "Bentley Bentayga",
+    "brand": "Bentley",
+    "model": "Bentayga",
+    "year": 2024,
+    "category": "SUV",
+    "type": "SUV",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 542,
+    "price": 165000,
+    "image": "../assets/images/bentley/bentley-bentayga.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-10-03", "end": "2026-10-09" }
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Rolls-Royce Cullinan",
+    "brand": "Rolls-Royce",
+    "model": "Cullinan",
+    "year": 2024,
+    "category": "SUV",
+    "type": "SUV",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 563,
+    "price": 215000,
+    "image": "../assets/images/rolls-royce/rolls royce cullinan.jpg",
+    "available": true,
+    "bookings": [],
+    "colors": [
+    {
+      "name": "White",
+      "hex": "#FFFFFF",
+      "images": {
+        "exterior": [
+          "../assets/images/rolls-royce/white exterior1.jpg",
+          "../assets/images/rolls-royce/white exterior2.jpg",
+          "../assets/images/rolls-royce/white exterior3.jpg",
+          "../assets/images/rolls-royce/white exterior4.jpg",
+          "../assets/images/rolls-royce/white exterior5.jpg",
+          "../assets/images/rolls-royce/white exterior6.jpg"
+           
+        ],
+        "interior": [
+          "../assets/images/rolls-royce/white interior1.jpg",
+          "../assets/images/rolls-royce/white interior2.jpg",
+          "../assets/images/rolls-royce/white interior3.jpg"
+        ]
+      }
+    },
+    {
+      "name": "Black",
+      "hex": "#000000",
+      "images": {
+        "exterior": [
+          "../assets/images/rolls-royce/black exterior1.jpg",
+          "../assets/images/rolls-royce/black exterior2.jpg",
+          "../assets/images/rolls-royce/black exterior3.jpg",
+          "../assets/images/rolls-royce/black exterior4.jpg",
+          "../assets/images/rolls-royce/black exterior5.jpg",
+          "../assets/images/rolls-royce/black exterior6.jpg"
+           
+        ],
+        "interior": [
+          "../assets/images/rolls-royce/black interior1.jpg",
+          "../assets/images/rolls-royce/black interior2.jpg",
+          "../assets/images/rolls-royce/black interior3.jpg"
+        ]
+      }
+    }
+    
+  ],
+  "defaultColor": "Red"
+  },
+  {
+    "id": 22,
+    "name": "Porsche Cayenne Turbo GT",
+    "brand": "Porsche",
+    "model": "Cayenne Turbo GT",
+    "year": 2024,
+    "category": "SUV",
+    "type": "SUV",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 650,
+    "price": 155000,
+    "image": "../assets/images/porsche/porsche-cayenne-turbo-gt.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-27", "end": "2026-10-03" }
+    ]
+  },
+  {
+    "id": 23,
+    "name": "BMW XM Label Red",
+    "brand": "BMW",
+    "model": "XM Label Red",
+    "year": 2024,
+    "category": "SUV",
+    "type": "SUV",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Hybrid",
+    "horsepower": 738,
+    "price": 175000,
+    "image": "../assets/images/bmw/bmw-xm-label-red.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 24,
+    "name": "Mercedes-AMG G 63",
+    "brand": "Mercedes-Benz",
+    "model": "G 63",
+    "year": 2024,
+    "category": "SUV",
+    "type": "SUV",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 577,
+    "price": 165000,
+    "image": "../assets/images/mercedes/mercedes-g63.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-10-01", "end": "2026-10-08" }
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Ferrari Purosangue",
+    "brand": "Ferrari",
+    "model": "Purosangue",
+    "year": 2024,
+    "category": "SUV",
+    "type": "SUV",
+    "seats": 4,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 715,
+    "price": 285000,
+    "image": "../assets/images/ferrari/ferrari-purosangue.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 26,
+    "name": "BMW M5 Competition",
+    "brand": "BMW",
+    "model": "M5 Competition",
+    "year": 2024,
+    "category": "Sedan",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 617,
+    "price": 135000,
+    "image": "../assets/images/bmw/bmw-m5-competition.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-29", "end": "2026-10-04" }
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Mercedes-AMG C 63 S E Performance",
+    "brand": "Mercedes-Benz",
+    "model": "C 63 S E Performance",
+    "year": 2024,
+    "category": "Sedan",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Hybrid",
+    "horsepower": 671,
+    "price": 125000,
+    "image": "../assets/images/mercedes/mercedes-c63.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 28,
+    "name": "Audi RS7 Sportback",
+    "brand": "Audi",
+    "model": "RS7 Sportback",
+    "year": 2024,
+    "category": "Sedan",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 621,
+    "price": 140000,
+    "image": "../assets/images/audi/audi-rs7.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 29,
+    "name": "Porsche Panamera Turbo S",
+    "brand": "Porsche",
+    "model": "Panamera Turbo S",
+    "year": 2024,
+    "category": "Sedan",
+    "type": "Sedan",
+    "seats": 4,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 620,
+    "price": 155000,
+    "image": "../assets/images/porsche/porsche-panamera-turbo-s.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-10-10", "end": "2026-10-16" }
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Maserati Quattroporte Trofeo",
+    "brand": "Maserati",
+    "model": "Quattroporte Trofeo",
+    "year": 2023,
+    "category": "Sedan",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 580,
+    "price": 110000,
+    "image": "../assets/images/maserati/maserati-quattroporte.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 31,
+    "name": "Jaguar F-Type R",
+    "brand": "Jaguar",
+    "model": "F-Type R",
+    "year": 2024,
+    "category": "Sports",
+    "type": "Coupe",
+    "seats": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 575,
+    "price": 145000,
+    "image": "../assets/images/jaguar/jaguar-f-type-r.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-26", "end": "2026-09-30" }
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Chevrolet Corvette Z06",
+    "brand": "Chevrolet",
+    "model": "Corvette Z06",
+    "year": 2024,
+    "category": "Sports",
+    "type": "Coupe",
+    "seats": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 670,
+    "price": 135000,
+    "image": "../assets/images/chevrolet/corvette-z06.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 33,
+    "name": "Nissan GT-R Nismo",
+    "brand": "Nissan",
+    "model": "GT-R Nismo",
+    "year": 2024,
+    "category": "Sports",
+    "type": "Coupe",
+    "seats": 4,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 600,
+    "price": 155000,
+    "image": "../assets/images/nissan/nissan-gtr-nismo.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 34,
+    "name": "Lexus LC 500",
+    "brand": "Lexus",
+    "model": "LC 500",
+    "year": 2024,
+    "category": "Luxury",
+    "type": "Coupe",
+    "seats": 4,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 471,
+    "price": 95000,
+    "image": "../assets/images/lexus/lexus-lc-500.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-10-02", "end": "2026-10-06" }
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Genesis G90",
+    "brand": "Genesis",
+    "model": "G90",
+    "year": 2024,
+    "category": "Luxury",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 375,
+    "price": 85000,
+    "image": "../assets/images/genesis/genesis-g90.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 36,
+    "name": "Cadillac Escalade-V",
+    "brand": "Cadillac",
+    "model": "Escalade-V",
+    "year": 2024,
+    "category": "SUV",
+    "type": "SUV",
+    "seats": 7,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "horsepower": 682,
+    "price": 145000,
+    "image": "../assets/images/cadillac/cadillac-escalade-v.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-28", "end": "2026-10-03" }
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Tesla Model X Plaid",
+    "brand": "Tesla",
+    "model": "Model X Plaid",
+    "year": 2024,
+    "category": "Electric",
+    "type": "SUV",
+    "seats": 6,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "horsepower": 1020,
+    "price": 115000,
+    "image": "../assets/images/tesla/tesla-model-x-plaid.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 38,
+    "name": "Rivian R1S",
+    "brand": "Rivian",
+    "model": "R1S",
+    "year": 2024,
+    "category": "Electric",
+    "type": "SUV",
+    "seats": 7,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "horsepower": 835,
+    "price": 105000,
+    "image": "../assets/images/rivian/rivian-r1s.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-10-05", "end": "2026-10-11" }
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Polestar 3",
+    "brand": "Polestar",
+    "model": "3",
+    "year": 2024,
+    "category": "Electric",
+    "type": "SUV",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "horsepower": 517,
+    "price": 95000,
+    "image": "../assets/images/cars/polestar-3.jpg",
+    "available": true,
+    "bookings": []
+  },
+  {
+    "id": 40,
+    "name": "Lotus Emeya",
+    "brand": "Lotus",
+    "model": "Emeya",
+    "year": 2024,
+    "category": "Electric",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "horsepower": 905,
+    "price": 145000,
+    "image": "../assets/images/lotus/lotus emeya.jpg",
+    "available": true,
+    "bookings": [
+      { "start": "2026-09-24", "end": "2026-09-28" }
+    ]
+  }
+]

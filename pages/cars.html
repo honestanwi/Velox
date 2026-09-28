@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VELOX — The Fleet | Luxury & Performance Supercars</title>
+
+    <link rel="stylesheet" href="../css/cars.css" />
+    <link rel="stylesheet" href="../css/genaral-css/nav-footer.css" />
+
+    <!-- External Animation & Inertial Scroll Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script defer src="../js/cars.js"></script>
+    <script defer src="../js/general-js/nav-footer.js"></script>
+    <script defer src="../js/general-js/theme.js"></script>
+  </head>
+
+  <body>
+    <!-- Theme Switcher -->
+    <section class="toggle-container" aria-label="Color theme">
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch to light mode"
+        aria-pressed="true"
+      >
+        <span class="theme-label theme-label--dark">Dark</span>
+        <span class="theme-label theme-label--light">Light</span>
+        <span class="theme-toggle__thumb" aria-hidden="true">
+          <img
+            src="../assets/icons/moon-svgrepo-com.svg"
+            alt=""
+            class="toggle-icon"
+          />
+        </span>
+      </button>
+    </section>
+
+    <!-- Navigation Bar -->
+    <header>
+      <nav class="navbar">
+        <a href="../index.html" class="nav-logo">
+          <span>V</span><span>E</span><span>L</span><span>O</span><span>X</span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-menu">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="cars.html" class="active">Cars</a>
+            <a href="booking.html">Checkout</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="profile.html">
+              <img src="../assets/icons/profile.svg" alt="profile icon" />
+            </a>
+          </div>
+          <a href="#fleet" class="nav-button">Explore Fleet</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="cars-page">
+      <section class="video-hero" aria-label="Velox Fleet Showcase Video">
+        <div class="video-wrapper">
+          <video
+            id="hero-video"
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            webkit-playsinline
+            preload="auto"
+          >
+            <source
+              src="../assets/images/hero/12698158_4070_2160_24fps.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support HTML5 video.
+          </video>
+
+          <!-- Ambient Overlays -->
+          <div class="video-overlay" aria-hidden="true"></div>
+          <div class="video-vignette" aria-hidden="true"></div>
+          <div class="video-grid-sheen" aria-hidden="true"></div>
+          <div class="video-glow-flare" aria-hidden="true"></div>
+        </div>
+
+        
+        
+
+        <div class="video-progress-container" aria-hidden="true">
+          <div id="video-progress-bar" class="video-progress-bar"></div>
+        </div>
+
+        <div class="hero-content">
+            <p class="section-eyebrow">
+            THE VELOX FLEET
+          </p>
+          <h1 class="hero-title">
+            Engineered for
+            <span class="hero-highlight">Adrenaline.</span>
+          </h1>
+          
+
+          <p class="hero-subtitle">
+            Unrestricted access to the world’s most coveted hypercars, track
+            specials, and grand tourers. Delivered straight to your private
+            driveway or airport tarmac.
+          </p>
+
+          
+
+        <a href="#fleet" class="scroll-cue" aria-label="Scroll down to fleet">
+          <span class="scroll-text">SCROLL TO UNLOCK</span>
+          <div class="scroll-mouse" aria-hidden="true">
+            <span class="scroll-wheel"></span>
+          </div>
+        </a>
+      </section>
+
+<div class="cars-search">
+            
+            <section class="booking-section">
+        <div class="booking-panel">
+          <div class="booking-field">
+            <span class="booking-label">CAR NAME</span>
+
+            <input
+              type="search"
+              id="car-search"
+              class="booking-input"
+              placeholder="Search by name or brand..."
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="booking-row">
+  <div class="booking-field">
+    <span class="booking-label">PICKUP DATE</span>
+    <input 
+      type="date" 
+      id="pickup-date" 
+      class="booking-input"
+    />
+  </div>
+
+  <div class="booking-field">
+    <span class="booking-label">RETURN DATE</span>
+    <input 
+      type="date" 
+      id="return-date" 
+      class="booking-input"
+    />
+  </div>
+</div>
+
+          <button class="booking-submit">Find a car</button>
+        </div>
+      </section>
+          </div>
+      
+      <!-- Cars catalogue -->
+      <section class="cars-catalogue">
+
+        <!-- Search + filters -->
+        <div class="cars-controls">
+
+          
+
+
+
+          <div class="cars-filters">
+
+            <button
+              class="filter-button active"
+              data-category="all"
+            >
+              All
+            </button>
+
+            <button
+              class="filter-button"
+              data-category="Luxury"
+            >
+              Luxury
+            </button>
+
+            <button
+              class="filter-button"
+              data-category="SUV"
+            >
+              SUV
+            </button>
+
+            <button
+              class="filter-button"
+              data-category="Sedan"
+            >
+              Sedan
+            </button>
+
+            <button
+              class="filter-button"
+              data-category="Sports"
+            >
+              Sports
+            </button>
+
+            <button
+              class="filter-button"
+              data-category="Electric"
+            >
+              Electric
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- Results information -->
+        <div class="cars-results">
+
+          <p>
+            <span id="cars-count">0</span>
+            vehicles
+          </p>
+
+          <button
+            class="filter-toggle"
+            type="button"
+          >
+            Filters
+          </button>
+
+        </div>
+
+
+        <!-- Cars generated by JavaScript -->
+        <div class="cars-sections" id="cars-grid">
+  <!-- JavaScript will create type sections here -->
+</div>
+
+
+        <!-- Empty state -->
+        <div
+          class="cars-empty"
+          id="cars-empty"
+          hidden
+        >
+          <h2>No cars found.</h2>
+
+          <p>
+            Try changing your search or filters.
+          </p>
+
+          <button
+            type="button"
+            id="clear-filters"
+          >
+            Clear filters
+          </button>
+        </div>
+
+      </section>
+
+      <footer class="footer">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">
+              <span>V</span>
+              <span>E</span>
+              <span>L</span>
+              <span>O</span>
+              <span>X</span>
+            </a>
+
+            <p>
+              Premium cars. Exceptional journeys. Drive different with VELOX.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-column">
+              <h3>Explore</h3>
+
+              <a href="index.html">Home</a>
+              <a href="pages/cars.html">Cars</a>
+              <a href="pages/booking.html">Checkout</a>
+            </div>
+
+            <div class="footer-column">
+              <h3>Account</h3>
+
+              <a href="pages/login.html">Login</a>
+              <a href="pages/signup.html">Sign Up</a>
+              <a href="pages/profile.html">Profile</a>
+            </div>
+
+            <div class="footer-column">
+              <h3>Follow</h3>
+
+              <a href="#">Instagram</a>
+              <a href="#">Facebook</a>
+              <a href="#">X</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 VELOX. All rights reserved.</p>
+
+          <div class="footer-bottom-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+        <div class="footer-wordmark" aria-hidden="true">
+          <span class="footer-wordmark__text logo"
+            ><span>V</span>
+            <span>E</span>
+            <span>L</span>
+            <span>O</span>
+            <span>X</span></span
+          >
+
+          <span class="footer-wordmark__light"></span>
+        </div>
+      </footer>
+
+      <!-- Floating Magnetic Back to Top Button -->
+      <button
+        class="back-to-top magnetic-button"
+        id="back-to-top"
+        aria-label="Back to top"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M18 15l-6-6-6 6"></path>
+        </svg>
+      </button>
+    </main>
+  </body>
+</html>

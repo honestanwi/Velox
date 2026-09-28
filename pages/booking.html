@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VELOX — Checkout | Luxury & Performance Supercars</title>
+
+    <link rel="stylesheet" href="../css/booking.css" />
+    <link rel="stylesheet" href="../css/genaral-css/nav-footer.css" />
+
+    <!-- External Animation & Inertial Scroll Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <!-- <script defer src="../js/cars.js"></script> -->
+
+    <script defer src="../js/car-detail.js"></script>
+    <script defer src="../js/booking.js"></script>
+    <script defer src="../js/general-js/nav-footer.js"></script>
+    <script defer src="../js/general-js/theme.js"></script>
+  </head>
+  <body>
+    <section class="toggle-container" aria-label="Color theme">
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch to light mode"
+        aria-pressed="true"
+      >
+        <span class="theme-label theme-label--dark">Dark</span>
+        <span class="theme-label theme-label--light">Light</span>
+        <span class="theme-toggle__thumb" aria-hidden="true">
+          <img
+            src="../assets/icons/moon-svgrepo-com.svg"
+            alt=""
+            class="toggle-icon"
+          />
+        </span>
+      </button>
+    </section>
+    <header>
+      <nav class="navbar">
+        <a href="../index.html" class="nav-logo">
+          <span>V</span><span>E</span><span>L</span><span>O</span><span>X</span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-menu">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="cars.html" class="active">Cars</a>
+            <a href="booking.html">Checkout</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="profile.html">
+              <img src="../assets/icons/profile.svg" alt="profile icon" />
+            </a>
+          </div>
+          <a href="cars.html" class="nav-button">Explore Fleet</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-steps">
+        <div class="progress-step active" data-step="1">
+          <span class="step-num">1</span>
+          <span class="step-label">Review</span>
+        </div>
+        <div class="progress-step" data-step="2">
+          <span class="step-num">2</span>
+          <span class="step-label">Details</span>
+        </div>
+        <div class="progress-step" data-step="3">
+          <span class="step-num">3</span>
+          <span class="step-label">Pay</span>
+        </div>
+        <div class="progress-step" data-step="4">
+          <span class="step-num">4</span>
+          <span class="step-label">Done</span>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <main class="booking-layout">
+      <!-- LEFT: summary -->
+      <aside class="booking-summary" id="booking-summary">
+        <div class="summary-car">
+          <img id="summary-image" src="" alt="" />
+          <div>
+            <p class="summary-brand" id="summary-brand"></p>
+            <h2 id="summary-name"></h2>
+          </div>
+        </div>
+
+        <div class="summary-rows">
+          <div class="summary-row">
+            <span>Pickup</span>
+            <strong id="summary-pickup"></strong>
+          </div>
+          <div class="summary-row">
+            <span>Date</span>
+            <strong id="summary-pickup-date"></strong>
+          </div>
+          <div class="summary-row">
+            <span>Drop-off</span>
+            <strong id="summary-dropoff"></strong>
+          </div>
+          <div class="summary-row">
+            <span>Date</span>
+            <strong id="summary-dropoff-date"></strong>
+          </div>
+          <div class="summary-row">
+            <span>Days</span>
+            <strong id="summary-days"></strong>
+          </div>
+        </div>
+
+        <!-- Extras -->
+        <div class="extras">
+          <p class="extras-title">Add extras</p>
+          <label class="extra-item">
+            <input type="checkbox" data-extra="delivery" data-price="25000" />
+            <span>Delivery to hotel / address</span>
+            <span class="extra-price">+25,000 XAF</span>
+          </label>
+          <label class="extra-item">
+            <input type="checkbox" data-extra="driver" data-price="15000" />
+            <span>Additional driver</span>
+            <span class="extra-price">+15,000 XAF</span>
+          </label>
+          <label class="extra-item">
+            <input type="checkbox" data-extra="insurance" data-price="30000" />
+            <span>Full insurance upgrade</span>
+            <span class="extra-price">+30,000 XAF</span>
+          </label>
+        </div>
+
+        <div class="summary-total">
+          <span>Total</span>
+          <strong id="summary-total">0 XAF</strong>
+        </div>
+      </aside>
+
+      <!-- RIGHT: steps -->
+      <section class="booking-steps">
+        <!-- STEP 1: Review -->
+        <div class="step-panel active" id="step-1">
+          <h2>Review your trip</h2>
+          <p class="step-desc">
+            Confirm the details, add any extras, then continue.
+          </p>
+          <button type="button" class="btn-primary" id="to-step-2">
+            Continue to details
+          </button>
+        </div>
+
+        <!-- STEP 2: Driver details -->
+        <div class="step-panel" id="step-2" hidden>
+          <h2>Driver details</h2>
+          <form id="details-form">
+            <div class="field">
+              <label for="full-name">Full name</label>
+              <input type="text" id="full-name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" required />
+            </div>
+            <div class="field">
+              <label for="licence">Driver’s licence number</label>
+              <input type="text" id="licence" required />
+            </div>
+            <div class="step-actions">
+              <button type="button" class="btn-secondary" id="back-to-1">
+                Back
+              </button>
+              <button type="submit" class="btn-primary">
+                Continue to payment
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- STEP 3: Payment -->
+        <div class="step-panel" id="step-3" hidden>
+          <h2>Payment</h2>
+          <div class="pay-methods">
+            <button type="button" class="pay-method active" data-method="card">
+              Card
+            </button>
+            <button type="button" class="pay-method" data-method="momo">
+              MTN MoMo
+            </button>
+            <button type="button" class="pay-method" data-method="orange">
+              Orange Money
+            </button>
+          </div>
+
+          <!-- Card form -->
+          <form id="form-card" class="pay-form">
+            <div class="field">
+              <label>Name on card</label>
+              <input type="text" id="card-name" />
+            </div>
+            <div class="field">
+              <label>Card number</label>
+              <input type="text" id="card-number" placeholder="ACCT-000003" />
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>Expiry</label>
+                <input type="text" id="card-expiry" placeholder="MM/YY" />
+              </div>
+              <div class="field">
+                <label>CVV</label>
+                <input type="text" id="card-cvv" placeholder="123" />
+              </div>
+            </div>
+          </form>
+
+          <!-- MoMo form -->
+          <form id="form-momo" class="pay-form" hidden>
+            <div class="field">
+              <label>MoMo number</label>
+              <input type="tel" id="momo-number" placeholder="6XX XXX XXX" />
+            </div>
+            <div class="field">
+              <label>Account name</label>
+              <input type="text" id="momo-name" />
+            </div>
+          </form>
+
+          <!-- Orange form -->
+          <form id="form-orange" class="pay-form" hidden>
+            <div class="field">
+              <label>Orange Money number</label>
+              <input type="tel" id="orange-number" placeholder="6XX XXX XXX" />
+            </div>
+            <div class="field">
+              <label>Account name</label>
+              <input type="text" id="orange-name" />
+            </div>
+          </form>
+
+          <div class="step-actions">
+            <button type="button" class="btn-secondary" id="back-to-2">
+              Back
+            </button>
+            <button type="button" class="btn-primary" id="pay-button">
+              Pay now
+            </button>
+          </div>
+        </div>
+
+        <!-- Loading overlay while “processing” -->
+        <div class="pay-loading" id="pay-loading" hidden>
+          <div class="spinner"></div>
+          <p>Processing payment…</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Success modal -->
+    <div class="success-modal" id="success-modal" hidden>
+      <div class="success-card">
+        <div class="success-icon">✓</div>
+        <h2>Booking confirmed</h2>
+        <p>
+          Your voucher is ready. You can download it or we’ll keep it in your
+          profile.
+        </p>
+        <div class="success-actions">
+          <button type="button" class="btn-primary" id="download-voucher">
+            Download voucher
+          </button>
+          <button type="button" class="btn-secondary" id="close-success">
+            Close
+          </button>
+        </div>
+        <div class="success-links">
+          <a href="profile.html">Go to Profile</a>
+          <a href="../index.html">Back to Home</a>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span>V</span>
+            <span>E</span>
+            <span>L</span>
+            <span>O</span>
+            <span>X</span>
+          </a>
+
+          <p>Premium cars. Exceptional journeys. Drive different with VELOX.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-column">
+            <h3>Explore</h3>
+
+            <a href="index.html">Home</a>
+            <a href="pages/cars.html">Cars</a>
+            <a href="pages/booking.html">Checkout</a>
+          </div>
+
+          <div class="footer-column">
+            <h3>Account</h3>
+
+            <a href="pages/login.html">Login</a>
+            <a href="pages/signup.html">Sign Up</a>
+            <a href="pages/profile.html">Profile</a>
+          </div>
+
+          <div class="footer-column">
+            <h3>Follow</h3>
+
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">X</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 VELOX. All rights reserved.</p>
+
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+      <div class="footer-wordmark" aria-hidden="true">
+        <span class="footer-wordmark__text logo"
+          ><span>V</span>
+          <span>E</span>
+          <span>L</span>
+          <span>O</span>
+          <span>X</span></span
+        >
+
+        <span class="footer-wordmark__light"></span>
+      </div>
+    </footer>
+
+    <!-- Floating Magnetic Back to Top Button -->
+    <button
+      class="back-to-top magnetic-button"
+      id="back-to-top"
+      aria-label="Back to top"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 15l-6-6-6 6"></path>
+      </svg>
+    </button>
+  </body>
+</html>
