@@ -1,0 +1,97 @@
+@font-face {
+  font-family: Space-Grotesk;
+  src: url(../../assets/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf);
+}
+
+@font-face {
+  font-family: Inter;
+  src: url(../../assets/fonts/inter/inter-variable.ttf);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+:root,
+html[data-theme="dark"] {
+  --bg: #080a0a;
+  --section-bg: #101313;
+  --card-bg: #151918;
+  --lime: #c7ff2e;
+  --lime-dark: #8faf20;
+  --text: #f5f7f2;
+  --text-muted: #969c96;
+  --border: #252a27;
+  --nav-bg: rgba(21, 25, 24, 0.62);
+  --nav-border: rgba(255, 255, 255, 0.08);
+  --nav-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  --head-font: Space-Grotesk, sans-serif;
+  --body-font: Inter, sans-serif;
+}
+
+html[data-theme="light"] {
+  --bg: #fafafa;
+  --section-bg: #eef2ed;
+  --card-bg: #ffffff;
+  --lime: #a3d100;
+  --lime-dark: #435f00;
+  --text: #0d100f;
+  --text-muted: #5e665f;
+  --border: #d4dad5;
+  --nav-bg: rgba(255, 255, 255, 0.72);
+  --nav-border: rgba(13, 16, 15, 0.1);
+  --nav-shadow: 0 8px 32px rgba(45, 58, 44, 0.16);
+}
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.page-transition.is-active {
+  pointer-events: all;
+  visibility: visible;
+}
+
+.page-transition__panel {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  transform: translateY(100%); /* hidden below */
+}
+
+.page-transition__logo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--head-font);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  letter-spacing: 0.2em;
+  color: #c7ff2e;
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.page-transition__panel {
+  will-change: transform;
+}
+
+/* New page starts with the curtain already closed */
+html.is-transitioning .page-transition {
+  visibility: visible;
+  pointer-events: all;
+}
+html.is-transitioning .page-transition__panel {
+  transform: translateY(0);
+}
+html.is-transitioning .page-transition__logo {
+  opacity: 1;
+  transform: scale(1);
+}

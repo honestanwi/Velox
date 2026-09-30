@@ -7,13 +7,27 @@
     <title>VELOX</title>
 
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/cars.css" />
     <link rel="stylesheet" href="css/genaral-css/nav-footer.css" />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="css/genaral-css/animations.css" />
+    <script>
+  if (sessionStorage.getItem("velox-transition") === "1") {
+    document.documentElement.classList.add("is-transitioning");
+  }
+</script>
+    <script  src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script  src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <script defer src="js/general-js/animations.js"></script>
     <script defer src="js/index.js"></script>
     <script defer src="js/general-js/nav-footer.js"></script>
     <script defer src="js/general-js/theme.js"></script>
   </head>
+  <div id="page-transition" class="page-transition" aria-hidden="true">
+    <div class="page-transition__panel"></div>
+    <div class="page-transition__logo">VELOX</div>
+  </div>
 
   <body>
     <!-- <div class="intro">
@@ -69,7 +83,7 @@
         <div class="nav-menu">
           <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="pages/cars.html">Our Fleet</a>
+            
             <a href="pages/booking.html">Checkout</a>
 
             <a href="pages/login.html">Login</a>
@@ -78,7 +92,7 @@
               ><img src="assets/icons/profile.svg" alt="profile icon"
             /></a>
           </div>
-          <a href="#" class="nav-button">Explore Fleet</a>
+          <a href="pages/cars.html" class="nav-button">Explore Fleet</a>
         </div>
       </nav>
 
@@ -318,8 +332,7 @@
             Explore a selection of premium vehicles ready for your next journey.
           </p>
         </div>
-
-        <div class="cars-container"></div>
+        <div id="cars-container"></div>
       </section>
 
       <section class="about">
@@ -624,13 +637,13 @@
           </div>
         </div>
         <div class="footer-wordmark" aria-hidden="true">
-          <span class="footer-wordmark__text logo"
+          <span class="footer-wordmark__text logo footer-logo"
             ><span>V</span>
             <span>E</span>
             <span>L</span>
             <span>O</span>
-            <span>X</span></span
-          >
+            <span>X</span>
+          </span>
 
           <span class="footer-wordmark__light"></span>
         </div>

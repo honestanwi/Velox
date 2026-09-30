@@ -2,6 +2,8 @@ let currentCar = null;
 let currentColor = null;
 let lightboxImages = [];
 let lightboxIndex = 0;
+let pickupPicker = null;
+let returnPicker = null;
 
 function getCarIdFromURL() {
   const params = new URLSearchParams(window.location.search);
@@ -125,6 +127,7 @@ function selectColor(colorName) {
 
   updateHeroImage(heroSrc);
   renderGalleries(color);
+  refreshDisabledDates();
 }
 
 function updateHeroImage(src) {
@@ -255,6 +258,15 @@ function setupLightbox() {
     if (e.key === "ArrowRight") lightboxNavigate(1);
   });
 }
+function findConflict(color, pickupStr, returnStr) {
+  if (!color || !color.bookings || !pickupStr || !returnStr) return null;
+
+  return (
+    color.bookings.find(
+      (b) => pickupStr <= b.end && returnStr >= b.start,
+    ) || null
+  );
+}
 
 // ---------- Favorite ----------
 function setupFavorite(car) {
@@ -357,25 +369,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderCar(car);
   setupBookButton();
 });
-function getDisabledDates(car) {
-  // Returns an array of date strings that flatpickr should disable
-  if (!car.bookings || car.bookings.length === 0) return [];
+function getDisabledDates(color) {
+  if (!color || !color.bookings) return [];
 
   const disabled = [];
 
-  car.bookings.forEach((booking) => {
-    const start = new Date(booking.start);
-    const end = new Date(booking.end);
+  color.bookings.forEach((booking) => {
+    // Split the string manually to avoid timezone shifting the dates
+    const [sy, sm, sd] = booking.start.split("-").map(Number);
+    const [ey, em, ed] = booking.end.split("-").map(Number);
 
-    // Loop every day from start to end (inclusive)
-    const current = new Date(start);
+    const current = new Date(sy, sm - 1, sd);
+    const end = new Date(ey, em - 1, ed);
+
     while (current <= end) {
-      // flatpickr likes "YYYY-MM-DD"
       const y = current.getFullYear();
       const m = String(current.getMonth() + 1).padStart(2, "0");
       const d = String(current.getDate()).padStart(2, "0");
       disabled.push(`${y}-${m}-${d}`);
-
       current.setDate(current.getDate() + 1);
     }
   });
@@ -410,44 +421,67 @@ function updateBookingSummary() {
   const daysEl = document.getElementById("rental-days");
   const totalEl = document.getElementById("total-price");
   const bookBtn = document.getElementById("book-button");
+  const warningEl = document.getElementById("booking-warning");
 
   if (daysEl) daysEl.textContent = days;
   if (totalEl) {
     totalEl.textContent = total > 0 ? `${total.toLocaleString()} XAF` : "0 XAF";
   }
 
-  // Enable button only when everything is filled and days > 0
+  // Does the chosen range run into a booking for this color?
+  const conflict = findConflict(currentColor,  pickupDate, returnDate);
+
+  if (warningEl) {
+    if (conflict) {
+      // const currentCar=car;
+      warningEl.textContent = `This car color (${currentColor.name})    is already booked from ${conflict.start} to ${conflict.end}. Please choose different dates or another colour.`;
+      warningEl.style.color="red"
+      warningEl.hidden = false;
+    } else {
+      warningEl.hidden = true;
+    }
+  }
+
   const isValid =
-    pickupLoc && dropoffLoc && pickupDate && returnDate && days > 0;
+    pickupLoc && dropoffLoc && pickupDate && returnDate && days > 0 && !conflict;
 
   if (bookBtn) bookBtn.disabled = !isValid;
 }
-function setupDatePickers(car) {
-  const disabledDates = getDisabledDates(car);
+function setupDatePickers() {
+  const disabledDates = getDisabledDates(currentColor);
 
-  const commonOptions = {
+  pickupPicker = flatpickr("#pickup-date", {
     dateFormat: "Y-m-d",
     minDate: "today",
     disable: disabledDates,
-    onChange: updateBookingSummary,
-  };
-
-  // Pickup
-  flatpickr("#pickup-date", {
-    ...commonOptions,
     onChange: function (selectedDates, dateStr) {
-      // When pickup changes, set return minDate to that day
-      if (returnPicker) {
-        returnPicker.set("minDate", dateStr || "today");
-      }
+      returnPicker.set("minDate", dateStr || "today");
       updateBookingSummary();
     },
   });
 
-  // Return
-  const returnPicker = flatpickr("#return-date", {
-    ...commonOptions,
+  returnPicker = flatpickr("#return-date", {
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    disable: disabledDates,
+    onChange: updateBookingSummary,
   });
+}
+
+function refreshDisabledDates() {
+  if (!pickupPicker || !returnPicker) return; // pickers not created yet
+
+  const disabled = getDisabledDates(currentColor);
+
+  pickupPicker.set("disable", disabled);
+  returnPicker.set("disable", disabled);
+
+  // Old selections might now be on booked days
+  pickupPicker.clear();
+  returnPicker.clear();
+  returnPicker.set("minDate", "today");
+
+  updateBookingSummary();
 }
 function setupLocationListeners() {
   ["pickup-location", "dropoff-location"].forEach((id) => {
@@ -455,31 +489,249 @@ function setupLocationListeners() {
     if (el) el.addEventListener("change", updateBookingSummary);
   });
 }
+
+/* =========================================
+   AUTH MODAL
+========================================= */
+
+function showAuthModal() {
+
+  const modal =
+    document.getElementById("auth-modal");
+
+
+  const title =
+    document.getElementById("auth-modal-title");
+
+
+  const message =
+    document.getElementById("auth-modal-message");
+
+
+  const loginBtn =
+    document.getElementById("auth-modal-login");
+
+
+  const signupBtn =
+    document.getElementById("auth-modal-signup");
+
+
+  const closeBtn =
+    document.getElementById("auth-modal-close");
+
+
+  if (!modal) return;
+
+
+  modal.classList.remove("success");
+
+
+  modal.classList.add("active");
+
+
+  modal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+
+  const badge =
+    modal.querySelector(".auth-modal__badge");
+
+
+  if (badge) {
+    badge.textContent = "VELOX ACCOUNT";
+  }
+
+
+  title.textContent =
+    "Login Required";
+
+
+  message.textContent =
+    "You need a VELOX account to continue with your booking.";
+
+
+  signupBtn.style.display = "";
+
+
+  loginBtn.innerHTML =
+    'Log In <i class="fa-solid fa-arrow-right"></i>';
+
+
+  loginBtn.onclick = () => {
+
+    closeAuthModal();
+
+    goToLogin();
+  };
+
+
+  signupBtn.onclick = () => {
+
+    closeAuthModal();
+
+    goToSignup();
+  };
+
+
+  closeBtn.onclick = closeAuthModal;
+}
+
+
+function closeAuthModal() {
+
+  const modal =
+    document.getElementById("auth-modal");
+
+
+  if (!modal) return;
+
+
+  modal.classList.remove(
+    "active",
+    "success"
+  );
+
+
+  modal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+}
+
+
+/* ---------- Close when clicking backdrop ---------- */
+
+document.addEventListener(
+  "click",
+  (e) => {
+
+    if (
+      e.target.classList.contains(
+        "auth-modal__backdrop"
+      )
+    ) {
+
+      closeAuthModal();
+    }
+  }
+);
+
+
+/* ---------- Escape key ---------- */
+
+document.addEventListener(
+  "keydown",
+  (e) => {
+
+    if (e.key === "Escape") {
+      closeAuthModal();
+    }
+  }
+);
 function setupBookButton() {
-  const btn = document.getElementById("book-button");
+
+  const btn =
+    document.getElementById("book-button");
+
   if (!btn) return;
 
+
   btn.addEventListener("click", () => {
-    if (btn.disabled || !currentCar) return;
+
+    if (btn.disabled) return;
+
+
+    /* =====================================
+       BUILD BOOKING DATA
+    ===================================== */
+
+    const days =
+      Number(
+        document.getElementById(
+          "rental-days"
+        )?.textContent || 0
+      );
+
 
     const bookingData = {
+
       carId: currentCar.id,
+
       carName: currentCar.name,
+
       pricePerDay: currentCar.price,
-      pickupLocation: document.getElementById("pickup-location").value,
-      dropoffLocation: document.getElementById("dropoff-location").value,
-      pickupDate: document.getElementById("pickup-date").value,
-      returnDate: document.getElementById("return-date").value,
-      days: Number(document.getElementById("rental-days").textContent),
+
+      pickupLocation:
+        document.getElementById(
+          "pickup-location"
+        ).value,
+
+      dropoffLocation:
+        document.getElementById(
+          "dropoff-location"
+        ).value,
+
+      pickupDate:
+        document.getElementById(
+          "pickup-date"
+        ).value,
+
+      returnDate:
+        document.getElementById(
+          "return-date"
+        ).value,
+
+      days,
+
       total:
-        currentCar.price *
-        Number(document.getElementById("rental-days").textContent),
+        currentCar.price * days
     };
 
-    // Save for the booking page (we’ll build that next)
-    localStorage.setItem("velox-pending-booking", JSON.stringify(bookingData));
 
-    // Go to booking / checkout page
-    window.location.href = "booking.html"; // adjust path if needed
+    /* =====================================
+       SAVE BOOKING
+    ===================================== */
+
+    localStorage.setItem(
+      "velox-pending-booking",
+      JSON.stringify(bookingData)
+    );
+
+
+    /* =====================================
+       AUTH CHECK
+    ===================================== */
+
+    if (!isLoggedIn()) {
+
+      /*
+       * Remember EXACT page the user
+       * came from.
+       */
+
+      localStorage.setItem(
+        "velox-return-url",
+        window.location.href
+      );
+
+
+      /*
+       * Show VELOX modal instead of
+       * immediately redirecting.
+       */
+
+      showAuthModal();
+
+      return;
+    }
+
+
+    /* =====================================
+       USER IS ALREADY LOGGED IN
+    ===================================== */
+
+    window.location.href = "booking.html";
   });
 }

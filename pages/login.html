@@ -3,455 +3,387 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D Dual-Card Form Switch</title>
+    <title>Login | VELOX</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/genaral-css/nav-footer.css" />
 
-    <style>
-      /* RESET & BASE */
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      }
+    <!-- External Animation & Inertial Scroll Libraries -->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 
-      body {
-        background-color: #000000;
-        color: #ffffff;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-        overflow: hidden;
-      }
-
-      /* 3D SCENE CONTAINER */
-      .scene {
-        position: relative;
-        width: 100%;
-        max-width: 380px;
-        height: 580px;
-        perspective: 1200px; /* Crucial for 3D card depth */
-      }
-
-      /* CARD BASE STYLES */
-      .card {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        padding: 2.25rem 1.75rem;
-        background: rgba(18, 18, 22, 0.85);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 28px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transform-style: preserve-3d;
-        will-change: transform, opacity, filter;
-      }
-
-      /* INITIAL 3D STACK POSITIONS */
-      .card.active {
-        z-index: 2;
-        transform: translate3d(0, 0, 0) rotateX(0deg);
-        opacity: 1;
-        filter: blur(0px) brightness(1);
-        pointer-events: auto;
-      }
-
-      .card.inactive {
-        z-index: 1;
-        transform: translate3d(0, -35px, -70px) rotateX(4deg);
-        opacity: 0.4;
-        filter: blur(4px) brightness(0.5);
-        pointer-events: none;
-      }
-
-      /* FORM ELEMENTS & TYPOGRAPHY */
-      .card-title {
-        font-size: 1.75rem;
-        font-weight: 700;
-      }
-
-      .card-title .accent {
-        color: #eab308;
-      }
-
-      .card-subtitle {
-        font-size: 0.8rem;
-        color: #9ca3af;
-        margin-top: 0.2rem;
-      }
-
-      .form-group {
-        margin-top: 1.25rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.85rem;
-      }
-
-      .input-field {
-        display: flex;
-        flex-direction: column;
-        gap: 0.35rem;
-      }
-
-      .input-field label {
-        font-size: 0.75rem;
-        color: #9ca3af;
-      }
-
-      .input-wrapper {
-        position: relative;
-        display: flex;
-        align-items: center;
-      }
-
-      .input-wrapper i {
-        position: absolute;
-        left: 1rem;
-        color: #6b7280;
-        font-size: 0.875rem;
-      }
-
-      .input-wrapper input {
-        width: 100%;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 0.75rem 1rem 0.75rem 2.75rem;
-        color: #ffffff;
-        font-size: 0.875rem;
-        outline: none;
-      }
-
-      .input-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-      }
-
-      .input-grid .input-wrapper input {
-        padding-left: 1rem;
-      }
-
-      .form-options {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 0.75rem;
-        color: #9ca3af;
-      }
-
-      .checkbox-label {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        cursor: pointer;
-      }
-
-      .checkbox-label input {
-        accent-color: #eab308;
-      }
-
-      .link-btn,
-      .switch-btn {
-        color: #eab308;
-        text-decoration: none;
-        background: none;
-        border: none;
-        font-size: 0.75rem;
-        font-weight: 600;
-        cursor: pointer;
-      }
-
-      .submit-btn {
-        width: 100%;
-        background: #eab308;
-        color: #000000;
-        font-weight: 700;
-        font-size: 0.875rem;
-        padding: 0.85rem;
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-        margin-top: 0.4rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        box-shadow: 0 0 20px rgba(234, 179, 8, 0.25);
-      }
-
-      .divider {
-        position: relative;
-        text-align: center;
-        margin: 1.1rem 0;
-      }
-
-      .divider::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .divider span {
-        position: relative;
-        background: #121216;
-        padding: 0 0.75rem;
-        font-size: 0.7rem;
-        color: #6b7280;
-      }
-
-      .social-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-      }
-
-      .social-btn {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 0.6rem;
-        color: #ffffff;
-        font-size: 0.75rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        cursor: pointer;
-      }
-
-      .card-footer {
-        text-align: center;
-        font-size: 0.75rem;
-        color: #9ca3af;
-        margin-top: 1rem;
-      }
-    </style>
+    <!-- Custom Scripts -->
+    <script defer src="../js/login.js"></script>
+    <script defer src="../js/general-js/nav-footer.js"></script>
+    <script defer src="../js/general-js/theme.js"></script>
   </head>
   <body>
-    <div class="scene">
-      <!-- LOGIN CARD -->
-      <div id="login-card" class="card active">
-        <div>
-          <h2 class="card-title">Welcome <span class="accent">Back</span></h2>
-          <p class="card-subtitle">Enter your details to access your account</p>
+    <section class="toggle-container" aria-label="Color theme">
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch to light mode"
+        aria-pressed="true"
+      >
+        <span class="theme-label theme-label--dark">Dark</span>
+        <span class="theme-label theme-label--light">Light</span>
+        <span class="theme-toggle__thumb" aria-hidden="true">
+          <img
+            src="../assets/icons/moon-svgrepo-com.svg"
+            alt=""
+            class="toggle-icon"
+          />
+        </span>
+      </button>
+    </section>
 
-          <form class="form-group" onsubmit="event.preventDefault()">
-            <div class="input-field">
-              <label>Email Address</label>
-              <div class="input-wrapper">
-                <i class="fa-regular fa-envelope"></i>
-                <input type="email" placeholder="Enter your email" />
+    <!-- Navigation Bar -->
+    <header>
+      <nav class="navbar">
+        <a href="../index.html" class="nav-logo">
+          <span>V</span><span>E</span><span>L</span><span>O</span><span>X</span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-menu">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="cars.html" class="active">Cars</a>
+            <a href="booking.html">Checkout</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="profile.html">
+              <img src="../assets/icons/profile.svg" alt="profile icon" />
+            </a>
+          </div>
+          <a href="#fleet" class="nav-button">Explore Fleet</a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <!-- Ambient background lighting blobs for glass card illumination -->
+      <div class="ambient-glow ambient-glow--1" aria-hidden="true"></div>
+      <div class="ambient-glow ambient-glow--2" aria-hidden="true"></div>
+
+      <div class="scene">
+        <!-- LOADER OVERLAY (for the video-style transform) -->
+<div class="card-loader" id="card-loader" aria-hidden="true">
+  <div class="card-spinner"></div>
+</div>
+        <!-- LOGIN CARD -->
+        <div id="login-card" class="card active">
+          <!-- Left Visual Stage -->
+          <div class="card-visual">
+            <div class="visual-content">
+              <span class="visual-badge">VELOX EXPERIENCE</span>
+              <h1 class="visual-title">Precision in Every Drive.</h1>
+              <p class="visual-subtitle">
+                Unlock instant access to our high-performance luxury fleet.
+              </p>
+            </div>
+            <div class="visual-image-wrapper">
+              <img
+                src="../assets/images/hero/6d300bb775f863d2aefebc83e6d2602b-removebg-preview.png"
+                alt="VELOX Performance Car"
+                class="visual-car"
+              />
+            </div>
+          </div>
+
+          <!-- Right Form Stage -->
+          <div class="card-form-container">
+            <div class="card-form-content">
+              <h2 class="card-title">
+                Welcome <span class="accent">Back</span>
+              </h2>
+              <p class="card-subtitle">
+                Enter your details to access your account
+              </p>
+
+              <form  id="login-form" class="form-group" onsubmit="event.preventDefault()">
+                <div class="input-field">
+                  <label>Email Address</label>
+                  <div class="input-wrapper">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" id="login-email" placeholder="Enter your email" />
+                  </div>
+                </div>
+
+                <div class="input-field">
+                  <label>Password</label>
+                  <div class="input-wrapper">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="login-password" placeholder="••••••••" />
+                  </div>
+                </div>
+
+                <div class="form-options">
+                  <label class="checkbox-label">
+                    <input type="checkbox" /> Remember me
+                  </label>
+                  <button type="button" class="link-btn">
+                    Forgot password?
+                  </button>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                  Sign In <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </form>
+
+              <div class="divider"><span>Or continue with</span></div>
+
+              <div class="social-grid">
+                <button type="button" class="social-btn">
+                  <i class="fa-brands fa-google"></i>
+                  Google
+                </button>
               </div>
             </div>
 
-            <div class="input-field">
-              <label>Password</label>
-              <div class="input-wrapper">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" placeholder="••••••••" />
-              </div>
-            </div>
-
-            <div class="form-options">
-              <label class="checkbox-label">
-                <input type="checkbox" /> Remember me
-              </label>
-              <button type="button" class="link-btn">Forgot password?</button>
-            </div>
-
-            <button type="submit" class="submit-btn">
-              Sign In <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </form>
-
-          <div class="divider"><span>Or continue with</span></div>
-
-          <div class="social-grid">
-            <button type="button" class="social-btn">
-              <i class="fa-brands fa-google" style="color: #eab308"></i> Google
-            </button>
-            <button type="button" class="social-btn">
-              <i class="fa-brands fa-apple"></i> Apple
-            </button>
+            <p class="card-footer">
+              Don't have an account?
+              <button id="to-signup" type="button" class="switch-btn">
+                Sign up
+              </button>
+            </p>
           </div>
         </div>
 
-        <p class="card-footer">
-          Don't have an account?
-          <button id="to-signup" type="button" class="switch-btn">
-            Sign up
-          </button>
-        </p>
-      </div>
-
-      <!-- SIGNUP CARD -->
-      <div id="signup-card" class="card inactive">
-        <div>
-          <h2 class="card-title">Create <span class="accent">Account</span></h2>
-          <p class="card-subtitle">Fill in details to get started with us</p>
-
-          <form class="form-group" onsubmit="event.preventDefault()">
-            <div class="input-field">
-              <label>Full Name</label>
-              <div class="input-wrapper">
-                <i class="fa-regular fa-user"></i>
-                <input type="text" placeholder="John Doe" />
-              </div>
+        <!-- SIGNUP CARD -->
+        <div id="signup-card" class="card inactive">
+          <!-- Left Visual Stage -->
+          <div class="card-visual">
+            <div class="visual-content">
+              <span class="visual-badge">JOIN THE CLUB</span>
+              <h1 class="visual-title">Start Your Journey.</h1>
+              <p class="visual-subtitle">
+                Create an account to book premium vehicles in seconds.
+              </p>
             </div>
-
-            <div class="input-field">
-              <label>Email Address</label>
-              <div class="input-wrapper">
-                <i class="fa-regular fa-envelope"></i>
-                <input type="email" placeholder="Enter your email" />
-              </div>
+            <div class="visual-image-wrapper">
+              <img
+                src="../assets/images/hero/6d300bb775f863d2aefebc83e6d2602b-removebg-preview.png"
+                alt="VELOX Performance Car"
+                class="visual-car"
+              />
             </div>
+          </div>
 
-            <div class="input-grid">
-              <div class="input-field">
-                <label>Password</label>
-                <div class="input-wrapper">
-                  <input type="password" placeholder="••••••••" />
+          <!-- Right Form Stage -->
+          <div class="card-form-container">
+            <div class="card-form-content">
+              <h2 class="card-title">
+                Create <span class="accent">Account</span>
+              </h2>
+              <p class="card-subtitle">
+                Fill in details to get started with us
+              </p>
+
+              <form id="signup-form" class="form-group" onsubmit="event.preventDefault()">
+                <div class="input-field">
+                  <label>Full Name</label>
+                  <div class="input-wrapper">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="text" id="signup-name" placeholder="John Doe" />
+                  </div>
                 </div>
-              </div>
-              <div class="input-field">
-                <label>Confirm</label>
-                <div class="input-wrapper">
-                  <input type="password" placeholder="••••••••" />
+
+                <div class="input-field">
+                  <label>Email Address</label>
+                  <div class="input-wrapper">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" id="signup-email" placeholder="Enter your email" />
+                  </div>
                 </div>
+
+                <div class="input-grid">
+                  <div class="input-field">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                      <input type="password" id="signup-password" placeholder="••••••••" />
+                    </div>
+                  </div>
+                  <div class="input-field">
+                    <label>Confirm</label>
+                    <div class="input-wrapper">
+                      <input type="password" id="signup-confirm" placeholder="••••••••" />
+                    </div>
+                  </div>
+                </div>
+
+                <label class="checkbox-label" style="margin-top: 0.2rem">
+                  <input type="checkbox" /> I agree to the
+                  <button type="button" class="link-btn">Terms</button>
+                </label>
+
+                <button type="submit" class="submit-btn">
+                  Create Account <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </form>
+
+              <div class="divider"><span>Or continue with</span></div>
+
+              <div class="social-grid">
+                <button type="button" class="social-btn">
+                  <i class="fa-brands fa-google"></i>
+                  Google
+                </button>
               </div>
             </div>
 
-            <label
-              class="checkbox-label"
-              style="font-size: 0.75rem; color: #9ca3af; margin-top: 0.2rem"
-            >
-              <input type="checkbox" /> I agree to the
-              <button type="button" class="link-btn">Terms</button>
-            </label>
-
-            <button type="submit" class="submit-btn">
-              Create Account <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </form>
-
-          <div class="divider"><span>Or continue with</span></div>
-
-          <div class="social-grid">
-            <button type="button" class="social-btn">
-              <i class="fa-brands fa-google" style="color: #eab308"></i> Google
-            </button>
-            <button type="button" class="social-btn">
-              <i class="fa-brands fa-apple"></i> Apple
-            </button>
+            <p class="card-footer">
+              Already have an account?
+              <button id="to-login" type="button" class="switch-btn">
+                Sign in
+              </button>
+            </p>
           </div>
         </div>
-
-        <p class="card-footer">
-          Already have an account?
-          <button id="to-login" type="button" class="switch-btn">
-            Sign in
-          </button>
-        </p>
       </div>
+    </main>
+    <!-- AUTH MODAL -->
+<div class="auth-modal" id="auth-modal" aria-hidden="true">
+  <div class="auth-modal__backdrop"></div>
+
+  <div class="auth-modal__box" role="dialog" aria-modal="true">
+
+    <button
+      type="button"
+      class="auth-modal__close"
+      id="auth-modal-close"
+      aria-label="Close"
+    >
+      &times;
+    </button>
+
+    <span class="auth-modal__badge">VELOX ACCOUNT</span>
+
+    <h2 id="auth-modal-title">
+      Login Required
+    </h2>
+
+    <p id="auth-modal-message">
+      You need a VELOX account to continue with your booking.
+    </p>
+
+    <div class="auth-modal__actions">
+
+      <button
+        type="button"
+        class="auth-modal__button auth-modal__button--primary"
+        id="auth-modal-login"
+      >
+        Log In
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <button
+        type="button"
+        class="auth-modal__button auth-modal__button--secondary"
+        id="auth-modal-signup"
+      >
+        Create Account
+      </button>
+
     </div>
 
-    <!-- GSAP ANIMATION ENGINE -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script>
-      const loginCard = document.getElementById("login-card");
-      const signupCard = document.getElementById("signup-card");
-      const toSignupBtn = document.getElementById("to-signup");
-      const toLoginBtn = document.getElementById("to-login");
+  </div>
+</div>
+    <footer class="footer">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span>V</span>
+            <span>E</span>
+            <span>L</span>
+            <span>O</span>
+            <span>X</span>
+          </a>
 
-      let isAnimating = false;
+          <p>Premium cars. Exceptional journeys. Drive different with VELOX.</p>
+        </div>
 
-      function swapCards(targetToFront) {
-        if (isAnimating) return;
-        isAnimating = true;
+        <div class="footer-links">
+          <div class="footer-column">
+            <h3>Explore</h3>
 
-        const currFront = targetToFront ? loginCard : signupCard;
-        const currBack = targetToFront ? signupCard : loginCard;
+            <a href="index.html">Home</a>
+            <a href="pages/cars.html">Cars</a>
+            <a href="pages/booking.html">Checkout</a>
+          </div>
 
-        const tl = gsap.timeline({
-          onComplete: () => {
-            isAnimating = false;
-          },
-        });
+          <div class="footer-column">
+            <h3>Account</h3>
 
-        // 1. FRONT CARD: Swoops down and forward in 3D space, fading out
-        tl.to(currFront, {
-          y: 120,
-          z: 40,
-          rotateX: -10,
-          opacity: 0,
-          filter: "blur(8px)",
-          duration: 0.35,
-          ease: "power2.in",
-        });
+            <a href="pages/login.html">Login</a>
+            <a href="pages/signup.html">Sign Up</a>
+            <a href="pages/profile.html">Profile</a>
+          </div>
 
-        // 2. LAYER SWAP: MIDWAY STATE CHANGE
-        tl.add(() => {
-          currFront.classList.remove("active");
-          currFront.classList.add("inactive");
+          <div class="footer-column">
+            <h3>Follow</h3>
 
-          currBack.classList.remove("inactive");
-          currBack.classList.add("active");
-        });
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">X</a>
+          </div>
+        </div>
+      </div>
 
-        // 3. OLD FRONT CARD: Resets seamlessly to the back stack position
-        tl.to(currFront, {
-          y: -35,
-          z: -70,
-          rotateX: 4,
-          opacity: 0.4,
-          filter: "blur(4px) brightness(0.5)",
-          duration: 0.2,
-        });
+      <div class="footer-bottom">
+        <p>© 2026 VELOX. All rights reserved.</p>
 
-        // 4. NEW FRONT CARD: Springs forward from back depth into front perspective
-        tl.fromTo(
-          currBack,
-          {
-            y: -35,
-            z: -70,
-            rotateX: 4,
-            opacity: 0.4,
-            filter: "blur(4px) brightness(0.5)",
-          },
-          {
-            y: 0,
-            z: 0,
-            rotateX: 0,
-            opacity: 1,
-            filter: "blur(0px) brightness(1)",
-            duration: 0.55,
-            ease: "back.out(1.5)", // Gives the exact bouncy overshoot snap seen in video
-          },
-          "-=0.25",
-        );
-      }
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+      <div class="footer-wordmark" aria-hidden="true">
+        <span class="footer-wordmark__text logo footer-logo"
+          ><span>V</span>
+          <span>E</span>
+          <span>L</span>
+          <span>O</span>
+          <span>X</span></span
+        >
 
-      toSignupBtn.addEventListener("click", () => swapCards(true));
-      toLoginBtn.addEventListener("click", () => swapCards(false));
-    </script>
+        <span class="footer-wordmark__light"></span>
+      </div>
+    </footer>
+
+    <!-- Floating Magnetic Back to Top Button -->
+    <button
+      class="back-to-top magnetic-button"
+      id="back-to-top"
+      aria-label="Back to top"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 15l-6-6-6 6"></path>
+      </svg>
+    </button>
   </body>
 </html>

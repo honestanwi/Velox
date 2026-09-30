@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="../css/booking.css" />
     <link rel="stylesheet" href="../css/genaral-css/nav-footer.css" />
+    <link rel="stylesheet" href="../css/genaral-css/animations.css" />
 
     <!-- External Animation & Inertial Scroll Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
@@ -17,10 +18,16 @@
     <!-- <script defer src="../js/cars.js"></script> -->
 
     <script defer src="../js/car-detail.js"></script>
-    <script defer src="../js/booking.js"></script>
+    <script defer src="../js/general-js/animations.js"></script>
+    <script defer src="../js/general-js/auth.js"></script>
+    <script type="module" src="../js/booking.js"></script>
     <script defer src="../js/general-js/nav-footer.js"></script>
     <script defer src="../js/general-js/theme.js"></script>
   </head>
+  <div id="page-transition" class="page-transition" aria-hidden="true">
+  <div class="page-transition__panel"></div>
+  <div class="page-transition__logo">VELOX</div>
+</div>
   <body>
     <section class="toggle-container" aria-label="Color theme">
       <button
@@ -132,7 +139,7 @@
         <div class="extras">
           <p class="extras-title">Add extras</p>
           <label class="extra-item">
-            <input type="checkbox" data-extra="delivery" data-price="25000" />
+            <input type="checkbox" data-extra="delivery" id="delivery-checkbox" data-price="25000" />
             <span>Delivery to hotel / address</span>
             <span class="extra-price">+25,000 XAF</span>
           </label>
@@ -350,7 +357,7 @@
         </div>
       </div>
       <div class="footer-wordmark" aria-hidden="true">
-        <span class="footer-wordmark__text logo"
+        <span class="footer-wordmark__text logo footer-logo"
           ><span>V</span>
           <span>E</span>
           <span>L</span>

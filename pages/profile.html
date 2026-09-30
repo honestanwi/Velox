@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile | VELOX</title>
+    <link rel="stylesheet" href="../css/profile.css" />
+    <link rel="stylesheet" href="../css/genaral-css/nav-footer.css" />
+    <link rel="stylesheet" href="../css/genaral-css/animations.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script defer src="../js/general-js/animations.js"></script>
+    <script defer src="../js/general-js/auth.js"></script>
+    <script defer src="../js/general-js/nav-footer.js"></script>
+    <script defer src="../js/general-js/theme.js"></script>
+  </head>
+  <div id="page-transition" class="page-transition" aria-hidden="true">
+  <div class="page-transition__panel"></div>
+  <div class="page-transition__logo">VELOX</div>
+</div>
+  <body>
+    <!-- Theme Switcher -->
+    <section class="toggle-container" aria-label="Color theme">
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch to light mode"
+        aria-pressed="true"
+      >
+        <span class="theme-label theme-label--dark">Dark</span>
+        <span class="theme-label theme-label--light">Light</span>
+        <span class="theme-toggle__thumb" aria-hidden="true">
+          <img
+            src="../assets/icons/moon-svgrepo-com.svg"
+            alt=""
+            class="toggle-icon"
+          />
+        </span>
+      </button>
+    </section>
+
+    <!-- Navigation Bar -->
+    <header>
+      <nav class="navbar">
+        <a href="../index.html" class="nav-logo">
+          <span>V</span><span>E</span><span>L</span><span>O</span><span>X</span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-menu">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="cars.html" class="active">Fleet</a>
+            <a href="booking.html">Checkout</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="profile.html">
+              <img src="../assets/icons/profile.svg" alt="profile icon" />
+            </a>
+          </div>
+          <a href="#fleet" class="nav-button">Explore Fleet</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="profile-page">
+      <!-- Not logged in redirect happens in JS -->
+
+      <section class="profile-hero">
+        <div class="profile-avatar" id="profile-avatar">A</div>
+        <div class="profile-meta">
+          <h1 id="profile-name">—</h1>
+          <p id="profile-email">—</p>
+          <p class="profile-member" id="profile-member"></p>
+        </div>
+        <button type="button" class="btn-logout" id="logout-btn">Log out</button>
+      </section>
+
+      <section class="profile-section">
+        <div class="section-header">
+          <h2>My bookings</h2>
+          <p class="section-sub">Trips you’ve reserved with VELOX</p>
+        </div>
+        <div class="bookings-list" id="bookings-list">
+          <!-- filled by JS -->
+        </div>
+        <p class="empty-state" id="bookings-empty" hidden>
+          No bookings yet. <a href="cars.html">Explore the fleet</a>
+        </p>
+      </section>
+
+      <section class="profile-section">
+        <div class="section-header">
+          <h2>Favorites</h2>
+          <p class="section-sub">Cars you saved for later</p>
+        </div>
+        <div class="favorites-grid" id="favorites-grid">
+          <!-- filled by JS -->
+        </div>
+        <p class="empty-state" id="favorites-empty" hidden>
+          No favorites yet. Tap the heart on any car to save it.
+        </p>
+      </section>
+    </main>
+     
+  </body>
+  <footer class="footer">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">
+              <span>V</span>
+              <span>E</span>
+              <span>L</span>
+              <span>O</span>
+              <span>X</span>
+            </a>
+
+            <p>
+              Premium cars. Exceptional journeys. Drive different with VELOX.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-column">
+              <h3>Explore</h3>
+
+              <a href="index.html">Home</a>
+              <a href="pages/cars.html">Cars</a>
+              <a href="pages/booking.html">Checkout</a>
+            </div>
+
+            <div class="footer-column">
+              <h3>Account</h3>
+
+              <a href="pages/login.html">Login</a>
+              <a href="pages/signup.html">Sign Up</a>
+              <a href="pages/profile.html">Profile</a>
+            </div>
+
+            <div class="footer-column">
+              <h3>Follow</h3>
+
+              <a href="#">Instagram</a>
+              <a href="#">Facebook</a>
+              <a href="#">X</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 VELOX. All rights reserved.</p>
+
+          <div class="footer-bottom-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+        <div class="footer-wordmark" aria-hidden="true">
+          <span class="footer-wordmark__text logo footer-logo"
+            ><span>V</span>
+            <span>E</span>
+            <span>L</span>
+            <span>O</span>
+            <span>X</span>
+          </span>
+
+          <span class="footer-wordmark__light"></span>
+        </div>
+      </footer>
+      <!-- Floating Magnetic Back to Top Button -->
+      <button
+        class="back-to-top magnetic-button"
+        id="back-to-top"
+        aria-label="Back to top"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M18 15l-6-6-6 6"></path>
+        </svg>
+      </button>
+    <script  type="module" src="../js/profile.js"></script>
+
+</html>

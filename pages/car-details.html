@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="../css/car-detail.css" />
     <link rel="stylesheet" href="../css/genaral-css/nav-footer.css" />
+    <link rel="stylesheet" href="../css/genaral-css/animations.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
@@ -19,10 +20,17 @@
     <!-- Custom Scripts -->
     <!-- <script defer src="../js/cars.js"></script> -->
     <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script defer src="../js/general-js/animations.js"></script>
+    <script defer src="../js/general-js/auth.js"></script>
     <script defer src="../js/car-detail.js"></script>
     <script defer src="../js/general-js/nav-footer.js"></script>
     <script defer src="../js/general-js/theme.js"></script>
   </head>
+  <div id="page-transition" class="page-transition" aria-hidden="true">
+  <div class="page-transition__panel"></div>
+  <div class="page-transition__logo">VELOX</div>
+</div>
   <body>
     <section class="toggle-container" aria-label="Color theme">
       <button
@@ -279,6 +287,7 @@
             <button type="button" class="book-button" id="book-button" disabled>
               Book this car
             </button>
+            <p id="booking-warning" class="booking-warning" hidden></p>
           </div>
         </div>
       </section>
@@ -302,6 +311,54 @@
       </button>
       <p class="lightbox-caption" id="lightbox-caption"></p>
     </div>
+    <!-- AUTH MODAL -->
+<div class="auth-modal" id="auth-modal" aria-hidden="true">
+  <div class="auth-modal__backdrop"></div>
+
+  <div class="auth-modal__box" role="dialog" aria-modal="true">
+
+    <button
+      type="button"
+      class="auth-modal__close"
+      id="auth-modal-close"
+      aria-label="Close"
+    >
+      &times;
+    </button>
+
+    <span class="auth-modal__badge">VELOX ACCOUNT</span>
+
+    <h2 id="auth-modal-title">
+      Login Required
+    </h2>
+
+    <p id="auth-modal-message">
+      You need a VELOX account to continue with your booking.
+    </p>
+
+    <div class="auth-modal__actions">
+
+      <a href="login.html"><button
+        type="button"
+        class="auth-modal__button auth-modal__button--primary"
+        id="auth-modal-login"
+      >
+        Log In
+        <i class="fa-solid fa-arrow-right"></i>
+      </button></a>
+
+      <a href="login.html"><button
+        type="button"
+        class="auth-modal__button auth-modal__button--secondary"
+        id="auth-modal-signup"
+      >
+        Create Account
+      </button></a>
+
+    </div>
+
+  </div>
+</div>
 
     <footer class="footer">
       <div class="footer-main">
@@ -353,7 +410,7 @@
         </div>
       </div>
       <div class="footer-wordmark" aria-hidden="true">
-        <span class="footer-wordmark__text logo"
+        <span class="footer-wordmark__text logo footer-logo"
           ><span>V</span>
           <span>E</span>
           <span>L</span>

@@ -1,3 +1,4 @@
+import { calculateRouteDistance } from './general-js/routing.js';
 // ---------- State ----------
 let pending = null; // data from car-details
 let car = null; // full car from cars.json
@@ -91,6 +92,12 @@ function setupExtras() {
 
 // ---------- Init ----------
 document.addEventListener("DOMContentLoaded", async () => {
+  if (!isLoggedIn()) {
+  localStorage.setItem("velox-return-url", "booking.html");
+  alert("Please log in to complete your booking.");
+  window.location.href = "login.html";
+  return;
+}
   pending = getPendingBooking();
 
   // No pending booking → send user back to fleet
@@ -110,6 +117,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupPayButton();
   setupSuccessModal();
   goToStep(1);
+  updateCheckoutTotal()
 
   // We’ll add step navigation next
 });
@@ -525,4 +533,27 @@ function downloadVoucher(booking) {
   }
   voucherWindow.document.write(html);
   voucherWindow.document.close();
+}
+
+
+async function updateCheckoutTotal() {
+  const pickup = "Limbe";
+  const dropoff = "Yaoundé Nsimalen Airport";
+  const baseCarPrice = 1200000; // XAF
+
+  const route = await calculateRouteDistance(pickup, dropoff);
+
+  if (route.deliveryFeeXAF > 0) {
+    console.log(`Distance: ${route.distanceKm} km`);
+    console.log(`Delivery Fee: +${route.deliveryFeeXAF.toLocaleString()} XAF`);
+    
+    // Display on UI
+    const feeLabel = document.getElementById("delivery-fee");
+    if (feeLabel) {
+      feeLabel.textContent = `+${route.deliveryFeeXAF.toLocaleString()} XAF (${route.distanceKm} km cross-city delivery)`;
+    }
+  }
+
+  const grandTotal = baseCarPrice + route.deliveryFeeXAF;
+  console.log("Grand Total:", grandTotal);
 }

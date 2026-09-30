@@ -14,58 +14,84 @@
     "price": 185000,
     "image": "../assets/images/porsche/porsche 911.jpg",
     "available": true,
-    "bookings": [
-      { "start": "2026-09-25", "end": "2026-09-28" },
-      { "start": "2026-10-10", "end": "2026-10-15" }
-    ],
     "colors": [
-    {
-      "name": "White",
-      "hex": "#FFFFFF",
-      "images": {
-        "exterior": [
-          "../assets/images/porsche/white exterior1.jpg",
-          "../assets/images/porsche/white exterior2.jpg",
-          "../assets/images/porsche/white exterior3.jpg",
-          "../assets/images/porsche/white exterior4.jpg",
-          "../assets/images/porsche/white exterior5.jpg",
-          "../assets/images/porsche/white exterior6.jpg"   
-        ],
-        "interior": [
-          "../assets/images/porsche/white interior1.jpg",
-          "../assets/images/porsche/white interior2.jpg",
-          "../assets/images/porsche/white interior3.jpg",
-          "../assets/images/porsche/white interior4.jpg"
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "images": {
+          "exterior": [
+            "../assets/images/porsche/white exterior1.jpg",
+            "../assets/images/porsche/white exterior2.jpg",
+            "../assets/images/porsche/white exterior3.jpg",
+            "../assets/images/porsche/white exterior4.jpg",
+            "../assets/images/porsche/white exterior5.jpg",
+            "../assets/images/porsche/white exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/porsche/white interior1.jpg",
+            "../assets/images/porsche/white interior2.jpg",
+            "../assets/images/porsche/white interior3.jpg",
+            "../assets/images/porsche/white interior4.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-02",
+            "end": "2026-10-06"
+          },
+          {
+            "start": "2026-10-18",
+            "end": "2026-10-22"
+          }
+        ]
+      },
+      {
+        "name": "Guards Red",
+        "hex": "#C41E3A",
+        "images": {
+          "exterior": [
+            "../assets/images/porsche/porsche 911.jpg",
+            "../assets/images/porsche/porsche 911.jpg"
+          ],
+          "interior": [
+            "../assets/images/porsche/porsche 911.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-08",
+            "end": "2026-10-14"
+          },
+          {
+            "start": "2026-10-25",
+            "end": "2026-10-29"
+          }
+        ]
+      },
+      {
+        "name": "Shark Blue",
+        "hex": "#1E3A5F",
+        "images": {
+          "exterior": [
+            "../assets/images/porsche/porsche 911.jpg"
+          ],
+          "interior": [
+            "../assets/images/porsche/porsche 911.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-04",
+            "end": "2026-10-09"
+          },
+          {
+            "start": "2026-10-15",
+            "end": "2026-10-20"
+          }
         ]
       }
-    },
-    {
-      "name": "Guards Red",
-      "hex": "#C41E3A",
-      "images": {
-        "exterior": [
-          "../assets/images/porsche/porsche 911.jpg",
-          "../assets/images/porsche/porsche 911.jpg"
-        ],
-        "interior": [
-          "../assets/images/porsche/porsche 911.jpg"
-        ]
-      }
-    },
-    {
-      "name": "Shark Blue",
-      "hex": "#1E3A5F",
-      "images": {
-        "exterior": [
-          "../assets/images/porsche/porsche 911.jpg"
-        ],
-        "interior": [
-          "../assets/images/porsche/porsche 911.jpg"
-        ]
-      }
-    }
-  ],
-  "defaultColor": "White"
+    ],
+    "defaultColor": "White"
   },
   {
     "id": 2,
@@ -82,49 +108,63 @@
     "price": 245000,
     "image": "../assets/images/ferrari/ferrari 296.jpg",
     "available": true,
-    "bookings": [
-      { "start": "2026-09-22", "end": "2026-09-30" },
-      { "start": "2026-10-25", "end": "2026-10-30" }
-    ],
     "colors": [
-    {
-      "name": "Red",
-      "hex": "#C41E3A",
-      "images": {
-        "exterior": [
-          "../assets/images/ferrari/red exterior1.jpg",
-          "../assets/images/ferrari/red exterior2.jpg",
-          "../assets/images/ferrari/red exterior3.jpg",
-          "../assets/images/ferrari/red exterior4.jpg"
-           
-        ],
-        "interior": [
-          "../assets/images/ferrari/red interior1.jpg",
-          "../assets/images/ferrari/red interior2.jpg",
-          "../assets/images/ferrari/red interior3.jpg"
+      {
+        "name": "Red",
+        "hex": "#C41E3A",
+        "images": {
+          "exterior": [
+            "../assets/images/ferrari/red exterior1.jpg",
+            "../assets/images/ferrari/red exterior2.jpg",
+            "../assets/images/ferrari/red exterior3.jpg",
+            "../assets/images/ferrari/red exterior4.jpg"
+          ],
+          "interior": [
+            "../assets/images/ferrari/red interior1.jpg",
+            "../assets/images/ferrari/red interior2.jpg",
+            "../assets/images/ferrari/red interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-03",
+            "end": "2026-10-07"
+          },
+          {
+            "start": "2026-10-16",
+            "end": "2026-10-21"
+          }
+        ]
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "images": {
+          "exterior": [
+            "../assets/images/ferrari/black exterior1.jpg",
+            "../assets/images/ferrari/black exterior2.jpg",
+            "../assets/images/ferrari/black exterior3.jpg",
+            "../assets/images/ferrari/black exterior4.jpg"
+          ],
+          "interior": [
+            "../assets/images/ferrari/black interior1.jpg",
+            "../assets/images/ferrari/black interior2.jpg",
+            "../assets/images/ferrari/black interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-10",
+            "end": "2026-10-15"
+          },
+          {
+            "start": "2026-10-24",
+            "end": "2026-10-28"
+          }
         ]
       }
-    },
-    {
-      "name": "Black",
-      "hex": "#000000",
-      "images": {
-        "exterior": [
-          "../assets/images/ferrari/black exterior1.jpg",
-          "../assets/images/ferrari/black exterior2.jpg",
-          "../assets/images/ferrari/black exterior3.jpg",
-          "../assets/images/ferrari/black exterior4.jpg"
-        ],
-        "interior": [
-          "../assets/images/ferrari/black interior1.jpg",
-          "../assets/images/ferrari/black interior2.jpg",
-          "../assets/images/ferrari/black interior3.jpg"
-        ]
-      }
-    }
-    
-  ],
-  "defaultColor": "Red"
+    ],
+    "defaultColor": "Red"
   },
   {
     "id": 3,
@@ -141,7 +181,31 @@
     "price": 220000,
     "image": "../assets/images/lambo/Lamborghini Huracán Tecnica.jpg",
     "available": true,
-    "bookings": []
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#008000",
+        "images": {
+          "exterior": [
+            "../assets/images/lambo/hgreen exterior1.jpg",
+            "../assets/images/lambo/hgreen exterior2.jpg",
+            "../assets/images/lambo/hgreen exterior3.jpg",
+            "../assets/images/lambo/hgreen exterior4.jpg"
+          ],
+          "interior": [
+            "../assets/images/lambo/hgreen interior1.jpg",
+            "../assets/images/lambo/hgreen interior2.jpg",
+            "../assets/images/lambo/hgreen interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-05",
+            "end": "2026-10-10"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": 4,
@@ -159,8 +223,14 @@
     "image": "../assets/images/mclaren/New McLaren 750S 2025_ Next-Level Performance and Design.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-10-01", "end": "2026-10-07" },
-      { "start": "2026-10-20", "end": "2026-10-25" }
+      {
+        "start": "2026-10-01",
+        "end": "2026-10-07"
+      },
+      {
+        "start": "2026-10-20",
+        "end": "2026-10-25"
+      }
     ]
   },
   {
@@ -196,7 +266,10 @@
     "image": "../assets/images/bmw/bmw-m4-competition.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-09-26", "end": "2026-10-02" }
+      {
+        "start": "2026-09-26",
+        "end": "2026-10-02"
+      }
     ]
   },
   {
@@ -232,7 +305,10 @@
     "image": "../assets/images/audi/audi-rs-etron-gt.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-09-23", "end": "2026-09-27" }
+      {
+        "start": "2026-09-23",
+        "end": "2026-09-27"
+      }
     ]
   },
   {
@@ -268,7 +344,10 @@
     "image": "../assets/images/tesla/tesla-model-s-plaid.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-10-05", "end": "2026-10-12" }
+      {
+        "start": "2026-10-05",
+        "end": "2026-10-12"
+      }
     ]
   },
   {
@@ -304,8 +383,14 @@
     "image": "../assets/images/rimac/rimac-nevera.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-09-28", "end": "2026-10-05" },
-      { "start": "2026-10-15", "end": "2026-10-20" }
+      {
+        "start": "2026-09-28",
+        "end": "2026-10-05"
+      },
+      {
+        "start": "2026-10-15",
+        "end": "2026-10-20"
+      }
     ]
   },
   {
@@ -340,9 +425,34 @@
     "price": 185000,
     "image": "../assets/images/bentley/bentley-flying-spur.jpg",
     "available": true,
-    "bookings": [
-      { "start": "2026-09-24", "end": "2026-09-29" }
-    ]
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "images": {
+          "exterior": [
+            "../assets/images/bentley/black exterior1.jpg",
+            "../assets/images/bentley/black exterior2.jpg",
+            "../assets/images/bentley/black exterior3.jpg",
+            "../assets/images/bentley/black exterior4.jpg",
+            "../assets/images/bentley/black exterior5.jpg",
+            "../assets/images/bentley/black exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/bentley/black interior1.jpg",
+            "../assets/images/bentley/black interior2.jpg",
+            "../assets/images/bentley/black interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-09-24",
+            "end": "2026-09-29"
+          }
+        ]
+      }
+    ],
+    "defaultColor": "Black"
   },
   {
     "id": 15,
@@ -377,7 +487,10 @@
     "image": "../assets/images/bmw/bmw-m760e.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-10-08", "end": "2026-10-14" }
+      {
+        "start": "2026-10-08",
+        "end": "2026-10-14"
+      }
     ]
   },
   {
@@ -413,7 +526,10 @@
     "image": "../assets/images/range-rover/range-rover-autobiography.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-09-25", "end": "2026-10-01" }
+      {
+        "start": "2026-09-25",
+        "end": "2026-10-01"
+      }
     ]
   },
   {
@@ -431,7 +547,84 @@
     "price": 225000,
     "image": "../assets/images/lambo/lamborghini-urus-performante.jpg",
     "available": true,
-    "bookings": []
+    "colors": [
+      {
+        "name": "Yellow",
+        "hex": "#FFFF00",
+        "images": {
+          "exterior": [
+            "../assets/images/lambo/uYellow exterior1.jpg",
+            "../assets/images/lambo/uYellow exterior2.jpg",
+            "../assets/images/lambo/uYellow exterior3.jpg",
+            "../assets/images/lambo/uYellow exterior4.jpg",
+            "../assets/images/lambo/uYellow exterior5.jpg",
+            "../assets/images/lambo/uYellow exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/lambo/uYellow interior1.jpg",
+            "../assets/images/lambo/uYellow interior2.jpg",
+            "../assets/images/lambo/uYellow interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-02",
+            "end": "2026-10-06"
+          }
+        ]
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "images": {
+          "exterior": [
+            "../assets/images/lambo/uwhite exterior1.jpg",
+            "../assets/images/lambo/uwhite exterior2.jpg",
+            "../assets/images/lambo/uwhite exterior3.jpg",
+            "../assets/images/lambo/uwhite exterior4.jpg",
+            "../assets/images/lambo/uwhite exterior5.jpg",
+            "../assets/images/lambo/uwhite exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/lambo/uwhite interior1.jpg",
+            "../assets/images/lambo/uwhite interior2.jpg",
+            "../assets/images/lambo/uwhite interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-09",
+            "end": "2026-10-13"
+          }
+        ]
+      },
+      {
+        "name": "Shark Blue",
+        "hex": "#0000FF",
+        "images": {
+          "exterior": [
+            "../assets/images/lambo/ublue exterior1.jpg",
+            "../assets/images/lambo/ublue exterior2.jpg",
+            "../assets/images/lambo/ublue exterior3.jpg",
+            "../assets/images/lambo/ublue exterior4.jpg",
+            "../assets/images/lambo/ublue exterior5.jpg",
+            "../assets/images/lambo/ublue exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/lambo/ublue interior1.jpg",
+            "../assets/images/lambo/ublue interior2.jpg",
+            "../assets/images/lambo/ublue interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-18",
+            "end": "2026-10-23"
+          }
+        ]
+      }
+    ],
+    "defaultColor": "Yellow"
   },
   {
     "id": 20,
@@ -446,10 +639,13 @@
     "fuel": "Petrol",
     "horsepower": 542,
     "price": 165000,
-    "image": "../assets/images/bentley/bentley-bentayga.jpg",
+    "image": "../assets/images/bentley/bentley bentyaga.png",
     "available": true,
     "bookings": [
-      { "start": "2026-10-03", "end": "2026-10-09" }
+      {
+        "start": "2026-10-03",
+        "end": "2026-10-09"
+      }
     ]
   },
   {
@@ -467,51 +663,59 @@
     "price": 215000,
     "image": "../assets/images/rolls-royce/rolls royce cullinan.jpg",
     "available": true,
-    "bookings": [],
     "colors": [
-    {
-      "name": "White",
-      "hex": "#FFFFFF",
-      "images": {
-        "exterior": [
-          "../assets/images/rolls-royce/white exterior1.jpg",
-          "../assets/images/rolls-royce/white exterior2.jpg",
-          "../assets/images/rolls-royce/white exterior3.jpg",
-          "../assets/images/rolls-royce/white exterior4.jpg",
-          "../assets/images/rolls-royce/white exterior5.jpg",
-          "../assets/images/rolls-royce/white exterior6.jpg"
-           
-        ],
-        "interior": [
-          "../assets/images/rolls-royce/white interior1.jpg",
-          "../assets/images/rolls-royce/white interior2.jpg",
-          "../assets/images/rolls-royce/white interior3.jpg"
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "images": {
+          "exterior": [
+            "../assets/images/rolls-royce/white exterior1.jpg",
+            "../assets/images/rolls-royce/white exterior2.jpg",
+            "../assets/images/rolls-royce/white exterior3.jpg",
+            "../assets/images/rolls-royce/white exterior4.jpg",
+            "../assets/images/rolls-royce/white exterior5.jpg",
+            "../assets/images/rolls-royce/white exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/rolls-royce/white interior1.jpg",
+            "../assets/images/rolls-royce/white interior2.jpg",
+            "../assets/images/rolls-royce/white interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-04",
+            "end": "2026-10-08"
+          }
+        ]
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "images": {
+          "exterior": [
+            "../assets/images/rolls-royce/black exterior1.jpg",
+            "../assets/images/rolls-royce/black exterior2.jpg",
+            "../assets/images/rolls-royce/black exterior3.jpg",
+            "../assets/images/rolls-royce/black exterior4.jpg",
+            "../assets/images/rolls-royce/black exterior5.jpg",
+            "../assets/images/rolls-royce/black exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/rolls-royce/black interior1.jpg",
+            "../assets/images/rolls-royce/black interior2.jpg",
+            "../assets/images/rolls-royce/black interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-15",
+            "end": "2026-10-20"
+          }
         ]
       }
-    },
-    {
-      "name": "Black",
-      "hex": "#000000",
-      "images": {
-        "exterior": [
-          "../assets/images/rolls-royce/black exterior1.jpg",
-          "../assets/images/rolls-royce/black exterior2.jpg",
-          "../assets/images/rolls-royce/black exterior3.jpg",
-          "../assets/images/rolls-royce/black exterior4.jpg",
-          "../assets/images/rolls-royce/black exterior5.jpg",
-          "../assets/images/rolls-royce/black exterior6.jpg"
-           
-        ],
-        "interior": [
-          "../assets/images/rolls-royce/black interior1.jpg",
-          "../assets/images/rolls-royce/black interior2.jpg",
-          "../assets/images/rolls-royce/black interior3.jpg"
-        ]
-      }
-    }
-    
-  ],
-  "defaultColor": "Red"
+    ],
+    "defaultColor": "Red"
   },
   {
     "id": 22,
@@ -529,7 +733,10 @@
     "image": "../assets/images/porsche/porsche-cayenne-turbo-gt.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-09-27", "end": "2026-10-03" }
+      {
+        "start": "2026-09-27",
+        "end": "2026-10-03"
+      }
     ]
   },
   {
@@ -565,7 +772,10 @@
     "image": "../assets/images/mercedes/mercedes-g63.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-10-01", "end": "2026-10-08" }
+      {
+        "start": "2026-10-01",
+        "end": "2026-10-08"
+      }
     ]
   },
   {
@@ -583,7 +793,59 @@
     "price": 285000,
     "image": "../assets/images/ferrari/ferrari-purosangue.jpg",
     "available": true,
-    "bookings": []
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "images": {
+          "exterior": [
+            "../assets/images/ferrari/pwhite exterior1.jpg",
+            "../assets/images/ferrari/pwhite exterior2.jpg",
+            "../assets/images/ferrari/pwhite exterior3.jpg",
+            "../assets/images/ferrari/pwhite exterior4.jpg",
+            "../assets/images/ferrari/pwhite exterior5.jpg",
+            "../assets/images/ferrari/pwhite exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/ferrari/pwhite interior1.jpg",
+            "../assets/images/ferrari/pwhite interior2.jpg",
+            "../assets/images/ferrari/pwhite interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-06",
+            "end": "2026-10-10"
+          }
+        ]
+      },
+      {
+        "name": "white",
+        "hex": "#000000",
+        "images": {
+          "exterior": [
+            "../assets/images/ferrari/pblack exterior1.jpg",
+            "../assets/images/ferrari/pblack exterior2.jpg",
+            "../assets/images/ferrari/pblack exterior3.jpg",
+            "../assets/images/ferrari/pblack exterior4.jpg",
+            "../assets/images/ferrari/pblack exterior5.jpg",
+            "../assets/images/ferrari/pblack exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/ferrari/pblack interior1.jpg",
+            "../assets/images/ferrari/pblack interior2.jpg",
+            "../assets/images/ferrari/pblack interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-17",
+            "end": "2026-10-23"
+          }
+        ]
+      }
+    ],
+    "defaultColor": "White"
   },
   {
     "id": 26,
@@ -601,7 +863,10 @@
     "image": "../assets/images/bmw/bmw-m5-competition.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-09-29", "end": "2026-10-04" }
+      {
+        "start": "2026-09-29",
+        "end": "2026-10-04"
+      }
     ]
   },
   {
@@ -619,7 +884,84 @@
     "price": 125000,
     "image": "../assets/images/mercedes/mercedes-c63.jpg",
     "available": true,
-    "bookings": []
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "images": {
+          "exterior": [
+            "../assets/images/mercedes/gblack exterior1.jpg",
+            "../assets/images/mercedes/gblack exterior2.jpg",
+            "../assets/images/mercedes/gblack exterior3.jpg",
+            "../assets/images/mercedes/gblack exterior4.jpg",
+            "../assets/images/mercedes/gblack exterior5.jpg",
+            "../assets/images/mercedes/gblack exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/mercedes/gblack interior1.jpg",
+            "../assets/images/mercedes/gblack interior2.jpg",
+            "../assets/images/mercedes/gblack interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-03",
+            "end": "2026-10-07"
+          }
+        ]
+      },
+      {
+        "name": "Shark Blue",
+        "hex": "#0000FF",
+        "images": {
+          "exterior": [
+            "../assets/images/mercedes/gblue exterior1.jpg",
+            "../assets/images/mercedes/gblue exterior2.jpg",
+            "../assets/images/mercedes/gblue exterior3.jpg",
+            "../assets/images/mercedes/gblue exterior4.jpg",
+            "../assets/images/mercedes/gblue exterior5.jpg",
+            "../assets/images/mercedes/gblue exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/mercedes/gblue interior1.jpg",
+            "../assets/images/mercedes/gblue interior2.jpg",
+            "../assets/images/mercedes/gblue interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-11",
+            "end": "2026-10-15"
+          }
+        ]
+      },
+      {
+        "name": "white",
+        "hex": "#FFFFFF",
+        "images": {
+          "exterior": [
+            "../assets/images/mercedes/gwhite exterior1.jpg",
+            "../assets/images/mercedes/gwhite exterior2.jpg",
+            "../assets/images/mercedes/gwhite exterior3.jpg",
+            "../assets/images/mercedes/gwhite exterior4.jpg",
+            "../assets/images/mercedes/gwhite exterior5.jpg",
+            "../assets/images/mercedes/gwhite exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/mercedes/gwhite interior1.jpg",
+            "../assets/images/mercedes/gwhite interior2.jpg",
+            "../assets/images/mercedes/gwhite interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-20",
+            "end": "2026-10-25"
+          }
+        ]
+      }
+    ],
+    "defaultColor": "White"
   },
   {
     "id": 28,
@@ -636,7 +978,34 @@
     "price": 140000,
     "image": "../assets/images/audi/audi-rs7.jpg",
     "available": true,
-    "bookings": []
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "images": {
+          "exterior": [
+            "../assets/images/audi/sblack exterior1.jpg",
+            "../assets/images/audi/sblack exterior2.jpg",
+            "../assets/images/audi/sblack exterior3.jpg",
+            "../assets/images/audi/sblack exterior4.jpg",
+            "../assets/images/audi/sblack exterior5.jpg",
+            "../assets/images/audi/sblack exterior6.jpg"
+          ],
+          "interior": [
+            "../assets/images/audi/sblack interior1.jpg",
+            "../assets/images/audi/sblack interior2.jpg",
+            "../assets/images/audi/sblack interior3.jpg"
+          ]
+        },
+        "bookings": [
+          {
+            "start": "2026-10-08",
+            "end": "2026-10-13"
+          }
+        ]
+      }
+    ],
+    "defaultColor": "White"
   },
   {
     "id": 29,
@@ -654,7 +1023,10 @@
     "image": "../assets/images/porsche/porsche-panamera-turbo-s.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-10-10", "end": "2026-10-16" }
+      {
+        "start": "2026-10-10",
+        "end": "2026-10-16"
+      }
     ]
   },
   {
@@ -690,7 +1062,10 @@
     "image": "../assets/images/jaguar/jaguar-f-type-r.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-09-26", "end": "2026-09-30" }
+      {
+        "start": "2026-09-26",
+        "end": "2026-09-30"
+      }
     ]
   },
   {
@@ -743,7 +1118,10 @@
     "image": "../assets/images/lexus/lexus-lc-500.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-10-02", "end": "2026-10-06" }
+      {
+        "start": "2026-10-02",
+        "end": "2026-10-06"
+      }
     ]
   },
   {
@@ -779,7 +1157,10 @@
     "image": "../assets/images/cadillac/cadillac-escalade-v.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-09-28", "end": "2026-10-03" }
+      {
+        "start": "2026-09-28",
+        "end": "2026-10-03"
+      }
     ]
   },
   {
@@ -815,7 +1196,10 @@
     "image": "../assets/images/rivian/rivian-r1s.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-10-05", "end": "2026-10-11" }
+      {
+        "start": "2026-10-05",
+        "end": "2026-10-11"
+      }
     ]
   },
   {
@@ -851,7 +1235,10 @@
     "image": "../assets/images/lotus/lotus emeya.jpg",
     "available": true,
     "bookings": [
-      { "start": "2026-09-24", "end": "2026-09-28" }
+      {
+        "start": "2026-09-24",
+        "end": "2026-09-28"
+      }
     ]
   }
 ]

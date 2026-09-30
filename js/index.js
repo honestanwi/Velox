@@ -177,146 +177,285 @@ function setupHowItWorksAnimation() {
 }
 setupHowItWorksAnimation();
 
-const featuredCars = [
-  {
-    name: "BMW M4",
-    brand: "BMW",
-    category: "Sports",
-    type: "Sedan",
-    image: "../assets/images/porsche/Porsche_911_GT3_RS_Neon.png",
-    seats: 4,
-    transmission: "Auto",
-    fuel: "Petrol",
-    price: 85000,
-  },
+const featuredContainer = document.getElementById("cars-container");
 
-  {
-    name: "Mercedes AMG",
-    brand: "Mercedes",
-    category: "Luxury",
-    type: "Sport",
-    image: "../assets/images/porsche/Porsche_911_GT3_RS_Neon.png",
-    seats: 5,
-    transmission: "Auto",
-    fuel: "Petrol",
-    price: 95000,
-  },
+let allCars = [];
 
-  {
-    name: "Porsche 911",
-    brand: "porsche",
-    category: "Sports",
-    type: "Sports",
-    image: "../assets/images/porsche/Porsche_911_GT3_RS_Neon.png",
-    seats: 2,
-    transmission: "Auto",
-    fuel: "Petrol",
-    price: 120000,
-  },
-];
-function renderFeaturedCars() {
-  const carsContainer = document.querySelector(".cars-container");
+function createCarCard(car) {
+  const card = document.createElement("article");
+  card.classList.add("car-card");
 
-  featuredCars.forEach((car) => {
-    const carCard = document.createElement("article");
+  // Normalize image path for root page
+  const imageSrc =
+    car.image && car.image.startsWith("../")
+      ? car.image.replace(/^\.\.\//, "")
+      : car.image || "";
 
-    carCard.classList.add("car-card");
+  card.innerHTML = `
+    <div class="car-card-image">
+      <img src="${imageSrc}" alt="${car.name}" loading="lazy" />
+    </div>
 
-    carCard.innerHTML = `
-            <div class="car-image">
-
-                <img
-                    src="${car.image}"
-                    alt="${car.name}"
-                >
-
-                <button
-                    class="favorite-button"
-                    aria-label="Add ${car.name} to favorites"
-                >
-                    ♡
-                </button>
-
-            </div>
-
-           <div class="car-info">
-                <h3 class="car-name">
-                    ${car.name}
-                </h3>
-
-              <div class="car-bottom">
-<p class="car-category">
-            ${car.category}
+    <div class="car-card-info">
+      <h2 class="car-card-name">${car.name}</h2>
+      <div class="car-card-meta">
+        <span class="car-card-category">${car.category}</span>
+        <p class="car-card-price">
+          ${car.price.toLocaleString()} XAF
+          <span>/ day</span>
         </p>
-                    <p class="car-price">
- ${car.price.toLocaleString()} XAF
- <span>/ day</span>
- </p>
-              </div>
-            </div>
+      </div>
+    </div>
 
-             <div class="car-hover">
-
-        <div class="car-hover-content">
-
-            <p class="car-category">
-                ${car.category}
-            </p>
-
-            <h3 class="car-hover-brand">
-                ${car.brand}
-            </h3>
-
-            <div class="car-specs">
-                <span>${car.type}</span>
-                <span>${car.seats} Seats</span>
-
-                <span>${car.transmission}</span>
-
-                <span>${car.fuel}</span>
-                
-
-            </div>
-
-            <p class="car-hover-price">
-                ${car.price.toLocaleString()} XAF
-                <span>/ day</span>
-            </p>
-
-            <a
-                href="#"
-                class="car-details magnetic-button"
-            >
-                View Details
-            </a>
-
+    <div class="car-card-overlay">
+      <div class="car-card-overlay-content">
+        <h3 class="car-hover-brand">${car.brand}</h3>
+        <div class="car-card-specs">
+          <span>${car.type}</span>
+          <span>${car.seats} Seats</span>
+          <span>${car.transmission}</span>
+          <span>${car.fuel}</span>
         </div>
 
+        <a 
+          href="pages/car-details.html?id=${car.id}" 
+          class="car-details magnetic-button"
+        >
+          View Details
+        </a>
+      </div>
     </div>
-        `;
-
-    carsContainer.appendChild(carCard);
-  });
+  `;
+  return card;
 }
-renderFeaturedCars();
-setupCarCardAnimations();
 
+// Enable smooth click-and-drag horizontal scrolling on desktop
+function setupHorizontalDragScroll(row) {
+  let isDown = false;
+  let startX = 0;
+  let scrollLeft = 0;
+  let isDragging = false;
+
+  row.addEventListener("mousedown", (e) => {
+    if (e.button !== 0) return;
+    if (e.target.closest("button, a, input")) return;
+
+    isDown = true;
+    isDragging = false;
+    startX = e.pageX - row.offsetLeft;
+    scrollLeft = row.scrollLeft;
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (!isDown) return;
+    isDown = false;
+    row.classList.remove("is-dragging");
+    setTimeout(() => {
+      isDragging = false;
+    }, 50);
+  });
+
+  row.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    const x = e.pageX - row.offsetLeft;
+    const walk = x - startX;
+
+    if (!isDragging && Math.abs(walk) > 6) {
+      isDragging = true;
+      row.classList.add("is-dragging");
+    }
+
+    if (isDragging) {
+      e.preventDefault();
+      row.scrollLeft = scrollLeft - walk;
+    }
+  });
+
+  // Prevent link click when dragging
+  row.addEventListener(
+    "click",
+    (e) => {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    },
+    true,
+  );
+}
+
+// Load cars
+async function loadHomeCars() {
+  try {
+    const response = await fetch("data/cars.json");
+
+    if (!response.ok) {
+      throw new Error("Could not load Cars.");
+    }
+
+    allCars = await response.json();
+    displayHomeCars();
+  } catch (error) {
+    console.error(error);
+    if (featuredContainer) {
+      featuredContainer.innerHTML = `<p class="event-error">Could not load featured Cars.</p>`;
+    }
+  }
+}
+
+// Render cars separated into top and bottom rows of the same section
+function displayHomeCars() {
+  if (!featuredContainer) return;
+
+  const featuredIds = [1, 9, 23, 2, 11, 38, 25, 40];
+
+  const featuredCars = featuredIds
+    .map((id) => allCars.find((car) => car.id === id))
+    .filter(Boolean);
+
+  const half = Math.ceil(featuredCars.length / 2);
+  const row1Cars = featuredCars.slice(0, half);
+  const row2Cars = featuredCars.slice(half);
+
+  featuredContainer.innerHTML = "";
+
+  const dualGrid = document.createElement("div");
+  dualGrid.className = "cars-dual-grid";
+
+  // Top row
+  const topRow = document.createElement("div");
+  topRow.className = "cars-scroll-row cars-row-top";
+  topRow.setAttribute("data-scroll-row", "top");
+  topRow.setAttribute("aria-label", "Top vehicle showcase");
+  row1Cars.forEach((car) => topRow.appendChild(createCarCard(car)));
+  dualGrid.appendChild(topRow);
+
+  // Bottom row
+  if (row2Cars.length > 0) {
+    const bottomRow = document.createElement("div");
+    bottomRow.className = "cars-scroll-row cars-row-bottom";
+    bottomRow.setAttribute("data-scroll-row", "bottom");
+    bottomRow.setAttribute("aria-label", "Bottom vehicle showcase");
+    row2Cars.forEach((car) => bottomRow.appendChild(createCarCard(car)));
+    dualGrid.appendChild(bottomRow);
+  }
+
+  featuredContainer.appendChild(dualGrid);
+
+  // Enable drag to scroll for mouse & desktop on both rows
+  dualGrid
+    .querySelectorAll(".cars-scroll-row")
+    .forEach(setupHorizontalDragScroll);
+
+  // Initialize animations AFTER DOM elements are added
+  setupCarCardAnimations();
+  setupFeaturedCarsAnimation();
+  setupMagneticButtons();
+}
+
+loadHomeCars();
+
+// function renderFeaturedCars() {
+//   const carsContainer = document.querySelector(".cars-container");
+
+//   featuredCars.forEach((car) => {
+//     const carCard = document.createElement("article");
+
+//     carCard.classList.add("car-card");
+
+//     carCard.innerHTML = `
+//             <div class="car-image">
+
+//                 <img
+//                     src="${car.image}"
+//                     alt="${car.name}"
+//                 >
+
+//                 <button
+//                     class="favorite-button"
+//                     aria-label="Add ${car.name} to favorites"
+//                 >
+//                     ♡
+//                 </button>
+
+//             </div>
+
+//            <div class="car-info">
+//                 <h3 class="car-name">
+//                     ${car.name}
+//                 </h3>
+
+//               <div class="car-bottom">
+// <p class="car-category">
+//             ${car.category}
+//         </p>
+//                     <p class="car-price">
+//  ${car.price.toLocaleString()} XAF
+//  <span>/ day</span>
+//  </p>
+//               </div>
+//             </div>
+
+//              <div class="car-hover">
+
+//         <div class="car-hover-content">
+
+//             <p class="car-category">
+//                 ${car.category}
+//             </p>
+
+//             <h3 class="car-hover-brand">
+//                 ${car.brand}
+//             </h3>
+
+//             <div class="car-specs">
+//                 <span>${car.type}</span>
+//                 <span>${car.seats} Seats</span>
+
+//                 <span>${car.transmission}</span>
+
+//                 <span>${car.fuel}</span>
+
+//             </div>
+
+//             <p class="car-hover-price">
+//                 ${car.price.toLocaleString()} XAF
+//                 <span>/ day</span>
+//             </p>
+
+//             <a
+//                 href="#"
+//                 class="car-details magnetic-button"
+//             >
+//                 View Details
+//             </a>
+
+//         </div>
+
+//     </div>
+//         `;
+
+//     carsContainer.appendChild(carCard);
+//   });
+// }
 function setupFeaturedCarsAnimation() {
-  gsap.from(".car-card", {
+  const cards = document.querySelectorAll(".car-card");
+  if (cards.length === 0) return;
+
+  gsap.from(cards, {
     y: 80,
     opacity: 0,
     scale: 0.95,
     duration: 0.9,
-    stagger: 0.15,
+    stagger: 0.08,
     ease: "power3.out",
 
     scrollTrigger: {
-      trigger: ".cars-container",
-      start: "top 80%",
+      trigger: "#cars-container",
+      start: "top 85%",
     },
   });
 }
-setupFeaturedCarsAnimation();
 
 function setupCarCardAnimations() {
   const cards = document.querySelectorAll(".car-card");
@@ -332,7 +471,6 @@ function setupCarCardAnimations() {
       const centerY = rect.height / 2;
 
       const rotateX = (y - centerY) / 9;
-
       const rotateY = (centerX - x) / 9;
 
       gsap.to(card, {
@@ -342,45 +480,50 @@ function setupCarCardAnimations() {
         ease: "power2.out",
       });
     });
-    const image = card.querySelector(".car-image img");
-    const hoverContent = card.querySelector(".car-hover-content");
 
-    card.addEventListener("mouseenter", () => {
-      gsap.to(image, {
-        scale: 1.08,
-        duration: 0.7,
-        ease: "power3.out",
-      });
+    const image = card.querySelector(".car-card-image img, .car-image img");
+    const hoverContent = card.querySelector(
+      ".car-card-overlay-content, .car-hover-content",
+    );
 
-      gsap.fromTo(
-        hoverContent,
-        {
-          y: 25,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.5,
+    if (image && hoverContent) {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(image, {
+          scale: 1.08,
+          duration: 0.7,
           ease: "power3.out",
-        },
-      );
-    });
+        });
 
-    card.addEventListener("mouseleave", () => {
-      gsap.to(card, {
-        rotateX: 0,
-        rotateY: 0,
-        duration: 0.6,
-        ease: "power3.out",
+        gsap.fromTo(
+          hoverContent,
+          {
+            y: 25,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            ease: "power3.out",
+          },
+        );
       });
 
-      gsap.to(image, {
-        scale: 1,
-        duration: 0.7,
-        ease: "power3.out",
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, {
+          rotateX: 0,
+          rotateY: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+
+        gsap.to(image, {
+          scale: 1,
+          duration: 0.7,
+          ease: "power3.out",
+        });
       });
-    });
+    }
   });
 }
 function setupAboutAnimation() {

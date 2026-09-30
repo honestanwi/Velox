@@ -1,21 +1,4 @@
-gsap.registerPlugin(ScrollTrigger);
-let lenis;
-if (typeof Lenis !== "undefined") {
-  lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    orientation: "vertical",
-    gestureOrientation: "vertical",
-    smoothWheel: true,
-  });
 
-  lenis.on("scroll", ScrollTrigger.update);
-
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
-  gsap.ticker.lagSmoothing(0);
-}
 let allCars = [];
 
 async function loadCars() {
@@ -35,24 +18,20 @@ async function loadCars() {
 }
 
 function isCarAvailable(car, pickupDate, returnDate) {
-  if (!car.bookings || car.bookings.length === 0) {
-    return true;
-  }
+  if (!car.colors || car.colors.length === 0) return true;
 
   const pickup = new Date(pickupDate);
   const returnD = new Date(returnDate);
 
-  for (const booking of car.bookings) {
-    const bookedStart = new Date(booking.start);
-    const bookedEnd = new Date(booking.end);
+  return car.colors.some((color) => {
+    if (!color.bookings || color.bookings.length === 0) return true;
 
-    const overlaps = pickup <= bookedEnd && returnD >= bookedStart;
-
-    if (overlaps) {
-      return false;
-    }
-  }
-  return true;
+    return !color.bookings.some((b) => {
+      const start = new Date(b.start);
+      const end = new Date(b.end);
+      return pickup <= end && returnD >= start;
+    });
+  });
 }
 
 // Smooth anchor scrolling
@@ -159,31 +138,12 @@ function initVideoHero() {
     },
   });
 }
-function setupBackToTop() {
-  const backToTopBtn = document.getElementById("back-to-top");
-  if (!backToTopBtn) return;
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 400) {
-      backToTopBtn.classList.add("visible");
-    } else {
-      backToTopBtn.classList.remove("visible");
-    }
-  });
-
-  backToTopBtn.addEventListener("click", () => {
-    if (lenis) {
-      lenis.scrollTo(0, { duration: 1.4 });
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  });
-}
 
 // Initialise everything once DOM is ready
 document.addEventListener("DOMContentLoaded", async () => {
   initVideoHero();
-  setupBackToTop();
+  // setupBackToTop();
   allCars = await loadCars();
   console.log("Loaded cars:", allCars); // you can keep this for now
   renderCars(allCars); // show all 40 cars
@@ -192,6 +152,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupClearFilters();
   setupDateFilters();
   setupFavorites();
+  setupCurrencySwitcher(); // see below
+
+  // 3. When user changes currency → redraw grid
+  document.addEventListener("currency:change", () => {
+    applyFilters(); // uses Currency.format again inside createCarCard
+  });
 });
 function createCarCard(car) {
   // 1. Create the outer container
@@ -218,7 +184,7 @@ function createCarCard(car) {
       <div class="car-card-meta">
         <span class="car-card-category">${car.category}</span>
         <p class="car-card-price">
-          ${car.price.toLocaleString()} XAF
+          ${Currency.format(car.price)}
           <span>/ day</span>
         </p>
       </div>
@@ -247,6 +213,79 @@ function createCarCard(car) {
   `;
   return card;
 }
+function setupCurrencySwitcher() {
+  const buttons = document.querySelectorAll(".currency-btn");
+  if (!buttons.length || !window.Currency) return;
+
+  const current = Currency.getCurrency();
+  buttons.forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.currency === current);
+
+    btn.addEventListener("click", () => {
+      const code = btn.dataset.currency;
+      Currency.setCurrency(code);
+
+      buttons.forEach((b) => {
+        b.classList.toggle("active", b.dataset.currency === code);
+      });
+    });
+  });
+}
+// Enable smooth click-and-drag horizontal scrolling on desktop
+function setupHorizontalDragScroll(row) {
+  let isDown = false;
+  let startX = 0;
+  let scrollLeft = 0;
+  let isDragging = false;
+
+  row.addEventListener("mousedown", (e) => {
+    if (e.button !== 0) return;
+    if (e.target.closest("button, a, input")) return;
+
+    isDown = true;
+    isDragging = false;
+    startX = e.pageX - row.offsetLeft;
+    scrollLeft = row.scrollLeft;
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (!isDown) return;
+    isDown = false;
+    row.classList.remove("is-dragging");
+    setTimeout(() => {
+      isDragging = false;
+    }, 50);
+  });
+
+  row.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    const x = e.pageX - row.offsetLeft;
+    const walk = x - startX;
+
+    if (!isDragging && Math.abs(walk) > 6) {
+      isDragging = true;
+      row.classList.add("is-dragging");
+    }
+
+    if (isDragging) {
+      e.preventDefault();
+      row.scrollLeft = scrollLeft - walk;
+    }
+  });
+
+  // Prevent link click when dragging
+  row.addEventListener(
+    "click",
+    (e) => {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    },
+    true,
+  );
+}
+
 function renderCars(carsToShow) {
   const container = document.getElementById("cars-grid");
   const countEl = document.getElementById("cars-count");
@@ -257,7 +296,7 @@ function renderCars(carsToShow) {
     return;
   }
 
-  // Clear previous sections
+  // Clear previous content
   container.innerHTML = "";
 
   // Update total number of cars
@@ -271,21 +310,32 @@ function renderCars(carsToShow) {
 
   emptyState.hidden = true;
 
-  // Group cars by their type
+  // Group cars by category
+  const categoryOrder = ["Luxury", "SUV", "Sedan", "Sports", "Electric"];
+
   const groupedCars = carsToShow.reduce((groups, car) => {
-    const type = car.type;
-
-    if (!groups[type]) {
-      groups[type] = [];
+    const category = car.category || car.type || "Other";
+    if (!groups[category]) {
+      groups[category] = [];
     }
-
-    groups[type].push(car);
-
+    groups[category].push(car);
     return groups;
   }, {});
 
-  // Create one section for each type
-  Object.entries(groupedCars).forEach(([type, cars]) => {
+  // Sort categories according to the defined order
+  const sortedCategories = Object.keys(groupedCars).sort((a, b) => {
+    const indexA = categoryOrder.indexOf(a);
+    const indexB = categoryOrder.indexOf(b);
+    if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+    if (indexA !== -1) return -1;
+    if (indexB !== -1) return 1;
+    return a.localeCompare(b);
+  });
+
+  // Render each category section
+  sortedCategories.forEach((category) => {
+    const cars = groupedCars[category];
+
     const section = document.createElement("section");
     section.classList.add("car-category-section");
 
@@ -293,30 +343,50 @@ function renderCars(carsToShow) {
       <div class="car-category-heading">
         <div>
           <p class="car-category-eyebrow">VELOX FLEET</p>
-          <h2 class="car-category-title">${type}</h2>
+          <h2 class="car-category-title">${category}</h2>
         </div>
 
         <span class="car-category-count">
           ${cars.length} ${cars.length === 1 ? "vehicle" : "vehicles"}
         </span>
       </div>
-
-      <div class="cars-grid"></div>
     `;
 
-    // Find the grid we just created
-    const grid = section.querySelector(".cars-grid");
+    // Divide cars of this category into top and bottom individually scrollable rows
+    const half = Math.ceil(cars.length / 2);
+    const topCars = cars.slice(0, half);
+    const bottomCars = cars.slice(half);
 
-    // Add the cars belonging to this type
-    cars.forEach((car) => {
-      const card = createCarCard(car);
-      grid.appendChild(card);
-    });
+    const dualGrid = document.createElement("div");
+    dualGrid.className = "cars-dual-grid";
 
-    // Add the completed section to the page
-    container.appendChild(section);
+    // Top row
+    const topRow = document.createElement("div");
+    topRow.className = "cars-scroll-row cars-row-top";
+    topRow.setAttribute("data-scroll-row", "top");
+    topRow.setAttribute("aria-label", "Top vehicle fleet showcase");
+    topCars.forEach((car) => topRow.appendChild(createCarCard(car)));
+    dualGrid.appendChild(topRow);
+
+    // Bottom row (if available)
+    if (bottomCars.length > 0) {
+      const bottomRow = document.createElement("div");
+      bottomRow.className = "cars-scroll-row cars-row-bottom";
+      bottomRow.setAttribute("data-scroll-row", "bottom");
+      bottomRow.setAttribute("aria-label", "Bottom vehicle fleet showcase");
+      bottomCars.forEach((car) => bottomRow.appendChild(createCarCard(car)));
+      dualGrid.appendChild(bottomRow);
+    }
+
+    container.appendChild(dualGrid);
+
+    // Enable drag to scroll for mouse & desktop on both rows
+    dualGrid
+      .querySelectorAll(".cars-scroll-row")
+      .forEach(setupHorizontalDragScroll);
+
+    animateCarsIn();
   });
-  animateCarsIn();
 }
 
 function setupFilters() {
