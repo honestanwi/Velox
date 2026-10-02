@@ -213,6 +213,40 @@ function createCarCard(car) {
   `;
   return card;
 }
+function setupMobileCardToggles() {
+  const cards = document.querySelectorAll(".car-card");
+
+  cards.forEach((card) => {
+    card.addEventListener("click", (e) => {
+      // Ignore clicks on inner buttons or links (like favorite or view details)
+      if (e.target.closest("button, a")) return;
+
+      // On touch devices or small viewports, toggle active class
+      if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth <= 768) {
+        const isAlreadyActive = card.classList.contains("active-touch");
+
+        // Close any other open cards
+        cards.forEach((c) => c.classList.remove("active-touch"));
+
+        if (!isAlreadyActive) {
+          card.classList.add("active-touch");
+          
+          // Animate overlay visible if using GSAP
+          const hoverContent = card.querySelector(".car-card-overlay-content, .car-hover-content");
+          if (hoverContent && typeof gsap !== "undefined") {
+            gsap.to(hoverContent, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" });
+          }
+        } else {
+          // Hide overlay if tapped again
+          const hoverContent = card.querySelector(".car-card-overlay-content, .car-hover-content");
+          if (hoverContent && typeof gsap !== "undefined") {
+            gsap.to(hoverContent, { y: 25, opacity: 0, duration: 0.3 });
+          }
+        }
+      }
+    });
+  });
+}
 function setupCurrencySwitcher() {
   const buttons = document.querySelectorAll(".currency-btn");
   if (!buttons.length || !window.Currency) return;
@@ -391,6 +425,7 @@ function renderCars(carsToShow) {
 
     animateCarsIn();
   });
+  setupMobileCardToggles
 }
 
 function setupFilters() {

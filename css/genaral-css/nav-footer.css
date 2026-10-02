@@ -351,6 +351,9 @@ html[data-theme="light"] nav.scrolled {
   border-radius: 6px;
   background: transparent;
   cursor: pointer;
+  position: relative;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
 }
 
 .menu-toggle span {

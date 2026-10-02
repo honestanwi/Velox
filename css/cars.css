@@ -454,6 +454,19 @@ html[data-theme="light"] .car-card-overlay {
     rgba(255, 255, 255, 0.1) 100%
   );
 }
+/* Show overlay on hover OR tap toggle */
+.car-card:hover .car-card-overlay,
+.car-card.active-touch .car-card-overlay {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.car-card:hover .car-card-overlay-content,
+.car-card.active-touch .car-card-overlay-content {
+  opacity: 1;
+  transform: translateY(0);
+}
 .car-card-overlay-content {
   width: 100%;
 
