@@ -328,14 +328,14 @@ html[data-theme="light"] .cars-scroll-row::-webkit-scrollbar-track {
 
   background: rgba(8, 10, 10, 0.55);
 
-  color: var(--text);
+  color: red;
 
   font-size: 1.2rem;
 
   cursor: pointer;
 
   backdrop-filter: blur(10px);
-
+z-index: 10;
   transition:
     background 0.3s ease,
     color 0.3s ease,
@@ -376,6 +376,9 @@ html[data-theme="light"] .cars-scroll-row::-webkit-scrollbar-track {
   color: var(--text);
   font-size: 1.2rem;
   line-height: 1;
+}
+html[data-theme="light"] .car-card-name {
+  color: #f5f7f2f2;
 }
 .car-card-category {
   position: absolute;
@@ -426,7 +429,7 @@ html[data-theme='light'] .car-card-price{
   align-items: flex-end;
 
   padding: 25px;
-
+z-index: 2;
   background: linear-gradient(
     to top,
     rgba(8, 10, 10, 0.98),

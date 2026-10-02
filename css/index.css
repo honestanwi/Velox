@@ -159,6 +159,7 @@ body {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 .hero-background {
   position: absolute;
@@ -228,6 +229,9 @@ html[data-theme="light"] .hero-overlay {
   letter-spacing: -0.05em;
   font-family: var(--head-font);
 }
+html[data-theme="light"] .hero-title {
+ color: #f5f7f2;
+}
 
 .hero-title span {
   display: block;
@@ -242,6 +246,9 @@ html[data-theme="light"] .hero-overlay {
   line-height: 1.7;
   font-family: var(--body-font);
 }
+/* html[data-theme="light"] .hero-description {
+ color: #f5f7f2;
+} */
 .hero-actions {
   margin-top: 35px;
   display: flex;
@@ -394,6 +401,7 @@ html[data-theme="light"] .hero-overlay {
   white-space: nowrap;
   width: 100%;
   margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .partners-content {
@@ -411,6 +419,9 @@ html[data-theme="light"] .hero-overlay {
     drop-shadow(0 0 16px var(--text));
 
   transition: filter 0.3s ease;
+}
+html[data-theme="light"] .partners-content img{
+  filter: none;
 }
 
 /* Optional: stronger glow on hover */

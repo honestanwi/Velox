@@ -661,7 +661,7 @@ function setupBookButton() {
 
       carName: currentCar.name,
 
-      pricePerDay: currentCar.price,
+      pricePerDay: Currency.format(currentCar.price),
 
       pickupLocation:
         document.getElementById(

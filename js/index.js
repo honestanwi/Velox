@@ -185,15 +185,20 @@ function createCarCard(car) {
   const card = document.createElement("article");
   card.classList.add("car-card");
 
-  // Normalize image path for root page
-  const imageSrc =
-    car.image && car.image.startsWith("../")
-      ? car.image.replace(/^\.\.\//, "")
-      : car.image || "";
+  const imageSrc = car.image && car.image.startsWith("../")
+    ? car.image.replace(/^\.\.\//, "")
+    : car.image || "";
 
   card.innerHTML = `
     <div class="car-card-image">
       <img src="${imageSrc}" alt="${car.name}" loading="lazy" />
+      <button 
+        class="favorite-button ${isFavorite(car.id) ? "active" : ""}" 
+        aria-label="Add ${car.name} to favorites"
+        data-id="${car.id}"
+      >
+        ${isFavorite(car.id) ? "♥" : "♡"}
+      </button>
     </div>
 
     <div class="car-card-info">
@@ -201,7 +206,7 @@ function createCarCard(car) {
       <div class="car-card-meta">
         <span class="car-card-category">${car.category}</span>
         <p class="car-card-price">
-          ${car.price.toLocaleString()} XAF
+          ${Currency.format(car.price)}
           <span>/ day</span>
         </p>
       </div>
@@ -217,20 +222,48 @@ function createCarCard(car) {
           <span>${car.fuel}</span>
         </div>
 
-        <a 
-          href="pages/car-details.html?id=${car.id}" 
-          class="car-details magnetic-button"
-        >
+        <a href="pages/car-details.html?id=${car.id}" class="car-details magnetic-button">
           View Details
         </a>
       </div>
     </div>
   `;
   return card;
+  
 }
+// function setupFavorites() {
+//   document.addEventListener("click", (event) => {
+//     const button = event.target.closest(".favorite-button");
+//     if (!button) return;
+
+//     event.preventDefault();
+//     event.stopPropagation();
+
+//     const carId = Number(button.dataset.id);
+//     let favorites = getFavorites();
+
+//     if (favorites.includes(carId)) {
+//       favorites = favorites.filter((id) => id !== carId);
+//       button.classList.remove("active");
+//       button.textContent = "♡";
+//     } else {
+//       favorites.push(carId);
+//       button.classList.add("active");
+//       button.textContent = "♥";
+//     }
+
+//     saveFavorites(favorites);
+//   });
+// }
+// setupFavorites();
 
 // Enable smooth click-and-drag horizontal scrolling on desktop
 function setupHorizontalDragScroll(row) {
+  // Disable drag-to-scroll logic on touch devices so native touch scrolling and taps work cleanly
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    return;
+  }
+
   let isDown = false;
   let startX = 0;
   let scrollLeft = 0;
@@ -271,7 +304,6 @@ function setupHorizontalDragScroll(row) {
     }
   });
 
-  // Prevent link click when dragging
   row.addEventListener(
     "click",
     (e) => {
@@ -280,7 +312,7 @@ function setupHorizontalDragScroll(row) {
         e.stopPropagation();
       }
     },
-    true,
+    true
   );
 }
 
@@ -619,6 +651,7 @@ function setupBenefitsAnimation() {
 // Call the animations
 setupAboutAnimation();
 setupBenefitsAnimation();
+
 function setupTestimonials() {
   const container = document.querySelector(".testimonial-container");
   if (!container) return;
@@ -658,6 +691,7 @@ function setupTestimonials() {
   });
 }
 setupTestimonials();
+
 function setupFinalCTAAnimation() {
   const timeline = gsap.timeline({
     scrollTrigger: {
@@ -783,3 +817,65 @@ function setupFooterWordmarkAnimation() {
 }
 
 setupFooterWordmarkAnimation();
+
+// function isLoggedIn() {
+//   return !!getCurrentUser();
+// }
+
+// function requireLogin(returnUrl) {
+//   if (returnUrl) {
+//     localStorage.setItem("velox-return-url", returnUrl);
+//   }
+//   window.location.href = "login.html";
+// }
+// function isLoggedIn() {
+//   return !!getCurrentUser();
+// }
+// function goToLogin(returnUrl = null) {
+
+//   if (returnUrl) {
+//     saveReturnUrl(returnUrl);
+//   }
+
+//   window.location.href = "login.html";
+// }
+// isLoggedIn();
+// LocalStorage helpers for favorites on index.js
+function getFavorites() {
+  const stored = localStorage.getItem("velox-favorites");
+  return stored ? JSON.parse(stored) : [];
+}
+
+function saveFavorites(ids) {
+  localStorage.setItem("velox-favorites", JSON.stringify(ids));
+}
+
+function isFavorite(carId) {
+  return getFavorites().includes(carId);
+}
+
+function setupFavorites() {
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest(".favorite-button");
+    if (!button) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const carId = Number(button.dataset.id);
+    let favorites = getFavorites();
+
+    if (favorites.includes(carId)) {
+      favorites = favorites.filter((id) => id !== carId);
+      button.classList.remove("active");
+      button.textContent = "♡";
+    } else {
+      favorites.push(carId);
+      button.classList.add("active");
+      button.textContent = "♥";
+    }
+
+    saveFavorites(favorites);
+  });
+}
+setupFavorites();

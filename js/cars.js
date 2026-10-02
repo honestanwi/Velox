@@ -233,6 +233,11 @@ function setupCurrencySwitcher() {
 }
 // Enable smooth click-and-drag horizontal scrolling on desktop
 function setupHorizontalDragScroll(row) {
+  // Disable drag-to-scroll logic on touch devices so native touch scrolling and taps work cleanly
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    return;
+  }
+
   let isDown = false;
   let startX = 0;
   let scrollLeft = 0;
@@ -273,7 +278,6 @@ function setupHorizontalDragScroll(row) {
     }
   });
 
-  // Prevent link click when dragging
   row.addEventListener(
     "click",
     (e) => {
@@ -282,7 +286,7 @@ function setupHorizontalDragScroll(row) {
         e.stopPropagation();
       }
     },
-    true,
+    true
   );
 }
 
@@ -393,12 +397,15 @@ function setupFilters() {
   const filterButtons = document.querySelectorAll(".filter-button");
 
   filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
+    // Standard click event covering both desktop and mobile
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+
       // Update the active visual state
       filterButtons.forEach((btn) => btn.classList.remove("active"));
       button.classList.add("active");
 
-      // Now use the shared function
+      // Apply the active category filter
       applyFilters();
     });
   });
@@ -506,7 +513,6 @@ function animateCarsIn() {
   const cards = document.querySelectorAll(".car-card");
   if (cards.length === 0) return;
 
-  // Stop any running animations on the cards
   gsap.killTweensOf(cards);
 
   gsap.fromTo(
@@ -515,10 +521,11 @@ function animateCarsIn() {
     {
       opacity: 1,
       y: 0,
-      duration: 0.9,
-      stagger: 0.09,
+      duration: 0.6, // reduced from 0.9s for snappier mobile performance
+      stagger: 0.05,
       ease: "power3.out",
-    },
+      clearProps: "transform,opacity" // Clears inline styles after animation finishes
+    }
   );
 }
 // Get the current list of favorite IDs from localStorage
@@ -538,24 +545,21 @@ function isFavorite(carId) {
   return favorites.includes(carId);
 }
 function setupFavorites() {
-  // We use event delegation because cards are created dynamically
-  const grid = document.getElementById("cars-grid");
-  if (!grid) return;
-
-  grid.addEventListener("click", (event) => {
+  document.addEventListener("click", (event) => {
     const button = event.target.closest(".favorite-button");
-    if (!button) return; // click was not on a favorite button
+    if (!button) return;
+
+    event.preventDefault();
+    event.stopPropagation();
 
     const carId = Number(button.dataset.id);
     let favorites = getFavorites();
 
     if (favorites.includes(carId)) {
-      // Already favorited → remove it
       favorites = favorites.filter((id) => id !== carId);
       button.classList.remove("active");
       button.textContent = "♡";
     } else {
-      // Not favorited → add it
       favorites.push(carId);
       button.classList.add("active");
       button.textContent = "♥";

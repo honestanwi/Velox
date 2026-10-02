@@ -312,7 +312,7 @@ function buildVoucherHTML(booking, autoPrint = false) {
 
       <div class="total-row">
         <span>Total paid</span>
-        <strong>${Number(booking.total).toLocaleString()} XAF</strong>
+        <strong>${Currency.format(Number(booking.total).toLocaleString())}</strong>
       </div>
 
       <div class="qr-block">
@@ -392,7 +392,7 @@ async function renderBookings(user, cars) {
                 <div><span>Drop-off</span><strong>${b.dropoffLocation}</strong></div>
                 <div><span>Dates</span><strong>${b.pickupDate} → ${b.returnDate}</strong></div>
                 <div><span>Days</span><strong>${b.days}</strong></div>
-                <div><span>Total</span><strong class="lime">${Number(b.total).toLocaleString()} XAF</strong></div>
+                <div><span>Total</span><strong class="lime">${Currency.format(Number(b.total).toLocaleString())}</strong></div>
               </div>
               <!-- Weather Badge Container -->
               <div class="weather-badge" id="weather-${b.id}" style="margin-top: 12px;"></div>

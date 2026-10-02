@@ -628,6 +628,7 @@ html[data-theme="light"] .video-overlay {
   overflow-x: auto;
   padding-bottom: 8px;
   scrollbar-width: none;
+  margin-left: 20px;
 }
 
 .cars-filters::-webkit-scrollbar {
@@ -635,6 +636,12 @@ html[data-theme="light"] .video-overlay {
 }
 
 .filter-button {
+  position: relative;
+  z-index: 21;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  pointer-events: auto !important;
   flex-shrink: 0;
 
   padding: 10px 18px;
@@ -649,7 +656,9 @@ html[data-theme="light"] .video-overlay {
   font-size: 0.75rem;
 
   cursor: pointer;
-
+touch-action: manipulation;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   transition:
     color 0.3s ease,
     background 0.3s ease,
@@ -925,43 +934,7 @@ html[data-theme="light"] .cars-scroll-row::-webkit-scrollbar-track {
     filter 0.7s ease;
 }
 
-.favorite-button {
-  position: absolute;
 
-  top: 15px;
-  right: 15px;
-
-  width: 40px;
-  height: 40px;
-
-  display: grid;
-  place-items: center;
-
-  border: 1px solid rgba(245, 247, 242, 0.15);
-  border-radius: 50%;
-
-  background: rgba(8, 10, 10, 0.55);
-
-  color: var(--text);
-
-  font-size: 1.2rem;
-
-  cursor: pointer;
-
-  backdrop-filter: blur(10px);
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.favorite-button:hover {
-  background: var(--lime);
-  color: var(--bg);
-
-  transform: scale(1.08);
-}
 
 /* Card information */
 
@@ -1205,19 +1178,22 @@ html[data-theme="light"] .car-specs span {
     padding: 100px 5% 140px;
   }
 
+  @media (min-width: 768px) {
   .cars-controls {
-    display: grid;
-
-    grid-template-columns: 1fr auto;
-
-    align-items: end;
-
-    gap: 40px;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-start;
+    gap: 20px;
   }
 
   .cars-filters {
-    margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-left: 0;
+    width: 100%;
   }
+}
 
   .cars-grid {
     grid-template-columns: repeat(2, 1fr);

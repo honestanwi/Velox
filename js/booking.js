@@ -233,7 +233,7 @@ function collectBookingData() {
     pickupDate: pending.pickupDate,
     returnDate: pending.returnDate,
     days: pending.days,
-    pricePerDay: pending.pricePerDay,
+    pricePerDay: Currency.format(pending.pricePerDay),
     extras: selectedExtras,
     extrasTotal,
     total: grandTotal,
@@ -507,7 +507,7 @@ function downloadVoucher(booking) {
 
       <div class="total-row">
         <span>Total paid</span>
-        <strong>${Number(booking.total).toLocaleString()} XAF</strong>
+        <strong>${Currency.format(Number(booking.total).toLocaleString())}</strong>
       </div>
 
       <p class="footer">

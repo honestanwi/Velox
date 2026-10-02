@@ -23,6 +23,7 @@
     <script defer src="../js/general-js/animations.js"></script>
     <!-- Custom Scripts -->
     <script defer src="../js/cars.js"></script>
+    <script defer src="../js/general-js/auth.js"></script>
     <script defer src="../js/general-js/nav-footer.js"></script>
     <script defer src="../js/general-js/currency.js"></script>
     <script defer src="../js/general-js/theme.js"></script>
@@ -79,7 +80,8 @@
               <img src="../assets/icons/profile.svg" alt="profile icon" />
             </a>
           </div>
-          <a href="pages/cars.html" class="nav-button">Explore Fleet</a>
+          <a href="#fleet" class="nav-button">Explore Fleet</a>
+
           <div class="currency-switcher" role="group" aria-label="Currency">
   <button type="button" data-currency="XAF" class="currency-btn active">XAF</button>
   <button type="button" data-currency="USD" class="currency-btn">USD</button>
@@ -201,49 +203,12 @@
 
 
 
-          <div class="cars-filters">
-
-            <button
-              class="filter-button active"
-              data-category="all"
-            >
-              All
-            </button>
-
-            <button
-              class="filter-button"
-              data-category="Luxury"
-            >
-              Luxury
-            </button>
-
-            <button
-              class="filter-button"
-              data-category="SUV"
-            >
-              SUV
-            </button>
-
-            <button
-              class="filter-button"
-              data-category="Sedan"
-            >
-              Sedan
-            </button>
-
-            <button
-              class="filter-button"
-              data-category="Sports"
-            >
-              Sports
-            </button>
-
-            <button
-              class="filter-button"
-              data-category="Electric"
-            >
-              Electric
-            </button>
+          <button class="filter-button active" data-category="all">All</button>
+<button class="filter-button" data-category="Luxury">Luxury</button>
+<button class="filter-button" data-category="SUV">SUV</button>
+<button class="filter-button" data-category="Sedan">Sedan</button>
+<button class="filter-button" data-category="Sports">Sports</button>
+<button class="filter-button" data-category="Electric">Electric</button>
 
           </div>
 
